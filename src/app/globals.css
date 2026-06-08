@@ -1,0 +1,234 @@
+@import "tailwindcss";
+
+/* ───────────────────────────────────────────────
+   PlaySchl Design System — Playful Edition
+   Tailwind CSS v4 (CSS-first config)
+   ─────────────────────────────────────────────── */
+
+@theme inline {
+  /* ── Fonts ── */
+  --font-heading: var(--font-baloo-2);
+  --font-body: var(--font-nunito);
+
+  /* ── Candy Pink (Primary) ── */
+  --color-candy-50: #FFF0F3;
+  --color-candy-100: #FFD6E0;
+  --color-candy-200: #FFB3C6;
+  --color-candy-300: #FF8AAB;
+  --color-candy-400: #FF6B8A;
+  --color-candy-500: #EE5A79;
+  --color-candy-600: #D94468;
+  --color-candy-700: #B83354;
+  --color-candy-800: #952640;
+  --color-candy-900: #6E1C2F;
+
+  /* ── Ocean Blue / Teal (Secondary) ── */
+  --color-ocean-50: #E8FBF8;
+  --color-ocean-100: #C5F5EE;
+  --color-ocean-200: #93EBD9;
+  --color-ocean-300: #5DDDC2;
+  --color-ocean-400: #4ECDC4;
+  --color-ocean-500: #3EBDB5;
+  --color-ocean-600: #2FA89F;
+  --color-ocean-700: #238A82;
+  --color-ocean-800: #1A6B65;
+  --color-ocean-900: #114D48;
+
+  /* ── Sunny Yellow (Accent) ── */
+  --color-sunny-50: #FFFCE8;
+  --color-sunny-100: #FFF5BF;
+  --color-sunny-200: #FFEE99;
+  --color-sunny-300: #FFE66D;
+  --color-sunny-400: #FFD93D;
+  --color-sunny-500: #F5CC00;
+  --color-sunny-600: #D4AF00;
+  --color-sunny-700: #A88A00;
+  --color-sunny-800: #7D6600;
+  --color-sunny-900: #524300;
+
+  /* ── Lavender (Tertiary) ── */
+  --color-lavender-50: #F5F0FF;
+  --color-lavender-100: #E8DEFF;
+  --color-lavender-200: #D1BBFF;
+  --color-lavender-300: #B899FF;
+  --color-lavender-400: #A78BFA;
+  --color-lavender-500: #8B6CE6;
+  --color-lavender-600: #7050CC;
+  --color-lavender-700: #5738A6;
+  --color-lavender-800: #402880;
+  --color-lavender-900: #2B1A5C;
+
+  /* ── Leaf Green ── */
+  --color-leaf-50: #E8FFF0;
+  --color-leaf-100: #C5F5D5;
+  --color-leaf-200: #93EBB0;
+  --color-leaf-300: #6BCB77;
+  --color-leaf-400: #52B86A;
+  --color-leaf-500: #3DA55C;
+  --color-leaf-600: #2E8A4A;
+  --color-leaf-700: #226B39;
+  --color-leaf-800: #174D2A;
+  --color-leaf-900: #0E331C;
+
+  /* ── Sky Blue ── */
+  --color-sky-50: #EDF8FF;
+  --color-sky-100: #D0EEFF;
+  --color-sky-200: #A3DBFF;
+  --color-sky-300: #6BC4FF;
+  --color-sky-400: #40B0FF;
+  --color-sky-500: #1E96E6;
+  --color-sky-600: #147ABF;
+  --color-sky-700: #0D5F99;
+  --color-sky-800: #074573;
+  --color-sky-900: #032D4D;
+
+  /* ── Warm Neutrals ── */
+  --color-ink: #2B2D42;
+  --color-ink-light: #6B7280;
+  --color-ink-muted: #9CA3AF;
+  --color-warm-50: #FFFDF7;
+  --color-warm-100: #FFF9F0;
+  --color-warm-200: #F5F0E8;
+  --color-warm-300: #E8E0D4;
+  --color-warm-400: #C4BAA8;
+  --color-warm-500: #9E9484;
+  --color-warm-600: #7A7166;
+  --color-warm-700: #5A524A;
+  --color-warm-800: #3D3732;
+  --color-warm-900: #2D2923;
+
+  /* ── Semantic ── */
+  --color-background: #FFFDF7;
+  --color-foreground: #2B2D42;
+  --color-surface: #FFFFFF;
+
+  /* ── Pastel Section Backgrounds ── */
+  --color-bubble-pink: #FFF0F3;
+  --color-mint-foam: #E8FFF5;
+  --color-sky-wash: #EDF8FF;
+  --color-lemon-mist: #FFFCE8;
+  --color-lavender-wash: #F5F0FF;
+
+  /* ── Shadows ── */
+  --shadow-card: 0 4px 20px rgba(43, 45, 66, 0.06);
+  --shadow-card-hover: 0 8px 32px rgba(43, 45, 66, 0.12);
+  --shadow-float: 0 12px 40px rgba(43, 45, 66, 0.15);
+  --shadow-glow-pink: 0 4px 24px rgba(255, 107, 138, 0.3);
+  --shadow-glow-blue: 0 4px 24px rgba(78, 205, 196, 0.3);
+  --shadow-glow-yellow: 0 4px 24px rgba(255, 217, 61, 0.35);
+
+  /* ── Border Radius ── */
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+  --radius-2xl: 2rem;
+  --radius-full: 9999px;
+}
+
+/* ── Base Styles ── */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+}
+
+body {
+  background: var(--color-background);
+  color: var(--color-foreground);
+  font-family: var(--font-body), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading), system-ui, sans-serif;
+}
+
+/* ── Selection ── */
+::selection {
+  background: var(--color-candy-200);
+  color: var(--color-candy-900);
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: var(--color-warm-100); }
+::-webkit-scrollbar-thumb { background: var(--color-candy-300); border-radius: var(--radius-full); }
+::-webkit-scrollbar-thumb:hover { background: var(--color-candy-400); }
+
+/* ── Focus ring ── */
+*:focus-visible {
+  outline: 3px solid var(--color-candy-400);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* ── Skip to content ── */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100;
+  background: var(--color-candy-400);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius-full);
+  font-weight: 700;
+  font-size: 0.875rem;
+  transition: top 0.2s;
+}
+.skip-link:focus {
+  top: 1rem;
+}
+
+/* ═══════════════════════════════════════════════
+   ANIMATIONS
+   ═══════════════════════════════════════════════ */
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-12px); }
+}
+
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-8px) rotate(3deg); }
+}
+
+@keyframes pulse-soft {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.85; transform: scale(1.06); }
+}
+
+@keyframes slide-up {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes wiggle {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-3deg); }
+  75% { transform: rotate(3deg); }
+}
+
+@keyframes drift {
+  0% { transform: translateX(0); }
+  50% { transform: translateX(15px); }
+  100% { transform: translateX(0); }
+}
+
+/* ── Reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

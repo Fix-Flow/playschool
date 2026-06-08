@@ -1,1 +1,0 @@
-﻿export { ParentDetailPage } from './ParentDetailPage';

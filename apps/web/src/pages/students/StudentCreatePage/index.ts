@@ -1,1 +1,0 @@
-﻿export { StudentCreatePage } from './StudentCreatePage';

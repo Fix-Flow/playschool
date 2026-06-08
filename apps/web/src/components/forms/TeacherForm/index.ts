@@ -1,1 +1,0 @@
-﻿export { TeacherForm } from './TeacherForm';

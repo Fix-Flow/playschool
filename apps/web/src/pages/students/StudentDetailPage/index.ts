@@ -1,1 +1,0 @@
-﻿export { StudentDetailPage } from './StudentDetailPage';

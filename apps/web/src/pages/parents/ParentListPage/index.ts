@@ -1,1 +1,0 @@
-﻿export { ParentListPage } from './ParentListPage';
