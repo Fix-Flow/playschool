@@ -1,0 +1,1 @@
+﻿export { FeePaymentPage } from './FeePaymentPage';

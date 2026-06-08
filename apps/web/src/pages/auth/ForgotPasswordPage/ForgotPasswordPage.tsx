@@ -1,0 +1,10 @@
+﻿// ForgotPasswordPage
+// TODO: Implement
+
+export function ForgotPasswordPage() {
+  return (
+    <div>
+      <h1>ForgotPasswordPage</h1>
+    </div>
+  );
+}

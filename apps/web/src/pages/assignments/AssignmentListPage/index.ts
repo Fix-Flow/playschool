@@ -1,0 +1,1 @@
+﻿export { AssignmentListPage } from './AssignmentListPage';

@@ -1,0 +1,21 @@
+/**
+ * Redis Client
+ *
+ * Provides a configured ioredis instance for caching,
+ * session management, and pub/sub messaging.
+ */
+
+import Redis from 'ioredis';
+import { config } from '@/config';
+import { logger } from '../logger';
+
+export const redis = new Redis(config.redis.url, {
+  maxRetriesPerRequest: 3,
+  retryStrategy(times) {
+    const delay = Math.min(times * 50, 2000);
+    return delay;
+  },
+});
+
+redis.on('connect', () => logger.debug('Redis client connected'));
+redis.on('error', (err) => logger.error({ err }, 'Redis client error'));

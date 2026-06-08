@@ -1,0 +1,1 @@
+﻿export { TeacherCreatePage } from './TeacherCreatePage';

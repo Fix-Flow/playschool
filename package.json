@@ -1,0 +1,42 @@
+{
+    "name":  "playschl",
+    "version":  "1.0.0",
+    "private":  true,
+    "description":  "PlaySchl - Modern School Management Platform",
+    "workspaces":  [
+                       "apps/web",
+                       "apps/api",
+                       "packages/*"
+                   ],
+    "scripts": {
+        "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,css,md}\"",
+                    "clean":  "turbo run clean \u0026\u0026 rm -rf node_modules",
+                    "db:migrate":  "npm run db:migrate --workspace=apps/api",
+                    "db:seed":  "npm run db:seed --workspace=apps/api",
+                    "docker:up":  "docker-compose up -d",
+                    "docker:down":  "docker-compose down",
+                    "prepare":  "husky install"
+                },
+    "devDependencies":  {
+                            "@types/node":  "^20.14.0",
+                            "husky":  "^9.0.0",
+                            "lint-staged":  "^15.2.0",
+                            "prettier":  "^3.3.0",
+                            "turbo":  "^2.0.0",
+                            "typescript":  "^5.5.0"
+                        },
+    "lint-staged":  {
+                        "*.{ts,tsx,js,jsx}":  [
+                                                  "eslint --fix",
+                                                  "prettier --write"
+                                              ],
+                        "*.{json,css,md}":  [
+                                                "prettier --write"
+                                            ]
+                    },
+    "engines":  {
+                    "node":  "\u003e=20.0.0",
+                    "npm":  "\u003e=10.0.0"
+                },
+    "packageManager":  "npm@10.8.1"
+}
