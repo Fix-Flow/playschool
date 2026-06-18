@@ -1,0 +1,406 @@
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 6000;
+  width: 100%;
+  background: var(--white);
+  overflow: visible; /* Allow truck to extend above */
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.site-header.hidden-nav {
+  transform: translateY(-250px); /* Moves up enough to hide the hanging monkey and dropping blocks */
+}
+
+.site-header::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  width: 100%;
+  height: 10px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='10'%3E%3Cpolygon points='0,0 10,10 20,0' fill='%23ffffff'/%3E%3C/svg%3E");
+  background-repeat: repeat-x;
+  background-position: left top;
+  z-index: 6001;
+  filter: drop-shadow(0 4px 3px rgba(0,0,0,0.04));
+}
+
+.header-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  height: 120px;
+  padding: 0 24px;
+  overflow: visible; /* Allow truck to extend above */
+}
+
+.logo-wrap {
+  display: flex;
+  align-items: center;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.brand-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 16px;
+  display: grid;
+  place-items: center;
+  background: conic-gradient(from 120deg, var(--pink), var(--yellow), var(--blue), var(--green), var(--purple), var(--pink));
+  box-shadow: var(--soft-shadow);
+  transform: rotate(-5deg);
+}
+
+.brand-icon span {
+  width: 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  border-radius: 10px;
+  background: var(--white);
+  font-family: var(--font-baloo-2), cursive;
+  color: var(--purple);
+  font-weight: 1000;
+  font-size: 0.95rem;
+}
+
+.brand-text strong {
+  display: block;
+  font-family: var(--font-baloo-2), cursive;
+  font-size: 1.4rem;
+  line-height: 1;
+}
+
+.brand-text small {
+  display: block;
+  color: var(--muted);
+  font-weight: 1000;
+  margin-top: 2px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 0.65rem;
+}
+
+.nav-wrap {
+  display: flex;
+  align-items: stretch;
+  position: relative;
+  padding-right: 100px;
+  overflow: visible;
+}
+
+/* 👾 The Hungry Monster */
+.nav-wrap::after {
+  content: '';
+  position: absolute;
+  top: -10px; /* Moved way UP so the black ledge line aligns with the navbar edge */
+  right: -35px; 
+  width: 140px; 
+  height: 170px; 
+  background-image: url('/monster_final.png'); 
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 6003;
+  pointer-events: none;
+}
+
+
+
+.nav-links {
+  display: flex;
+  align-items: stretch;
+  position: relative;
+  overflow: visible;
+}
+
+.nav-links a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 110px;
+  padding: 0 16px;
+  color: #333;
+  font-weight: 900;
+  font-size: 0.95rem; /* Slightly smaller for a tighter, less bulky look */
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  transition: all 0.2s ease;
+  position: relative;
+  z-index: 6002; /* sit above the zigzag */
+}
+
+.nav-links a .nav-text {
+  position: relative;
+  z-index: 2;
+  margin-top: -2px; /* Visually center uppercase text better */
+}
+
+/* Base text colors */
+.nav-links a.nav-item-worlds { color: #f93100; }
+.nav-links a.nav-item-campus { color: #ff911b; }
+.nav-links a.nav-item-routine { color: #ffc000; }
+.nav-links a.nav-item-parents { color: #a7c850; }
+.nav-links a.nav-item-testimonials { color: var(--purple, #8b5cf6); }
+.nav-links a.nav-item-admissions { color: #5bc4db; }
+
+/* Active & Hover text colors */
+.nav-links a.active {
+  color: var(--white) !important;
+}
+
+.nav-links a.nav-item-worlds:hover { color: #f93100; }
+.nav-links a.nav-item-campus:hover { color: #ff911b; }
+.nav-links a.nav-item-routine:hover { color: #ffc000; }
+.nav-links a.nav-item-parents:hover { color: #a7c850; }
+.nav-links a.nav-item-testimonials:hover { color: var(--purple, #8b5cf6); }
+
+.nav-links a::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 30%; /* Start shorter */
+  opacity: 0; /* Hidden by default */
+  border-radius: 0 0 16px 16px; /* Keep radius ready */
+  transition: height 0.8s ease, 
+              opacity 0.5s ease, 
+              box-shadow 0.6s ease;
+  z-index: 1;
+}
+
+.nav-links a.active::before {
+  height: calc(100% + 18px); /* Hangs down further below the header */
+  opacity: 1;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.12); /* Adds depth so it pops */
+}
+
+/* 🐒 Hanging Monkey Effect */
+.nav-links a:not(.nav-item-admissions)::after {
+  content: '';
+  position: absolute;
+  top: calc(30% - 16px); /* perfectly offsets the ending distance to sync the animation speeds! */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%; /* Spans the exact width of the ribbon! */
+  height: 200px; /* Plenty of height to let him hang down */
+  background-image: url('/monkey1.png');
+  background-size: 100% auto; /* Forces the branch to perfectly stretch across the width */
+  background-position: top center;
+  background-repeat: no-repeat;
+  opacity: 0; /* Hidden by default */
+  transition: top 0.8s ease, opacity 0.5s ease;
+  z-index: 3; /* Sit in front of the ribbon */
+  pointer-events: none;
+}
+
+/* Monkey permanently hangs on the Active state only */
+.nav-links a:not(.nav-item-admissions).active::after {
+  top: calc(100% + 2px); /* Adjusted to sit perfectly at the bottom edge of the card */
+  opacity: 1;
+}
+
+.nav-links a.nav-item-admissions {
+  margin: 0 0 0 16px;
+  padding: 12px 24px;
+  height: auto;
+  align-self: center;
+  color: var(--white) !important;
+  animation: slideAndDrop 4s cubic-bezier(0.2, 0.8, 0.2, 1) 0.5s both;
+}
+
+@keyframes slideAndDrop {
+  0%   { transform: translateX(100vw); }
+  80%  { transform: translateX(0); animation-timing-function: ease-in; }
+  84%  { transform: translateX(0) translateY(20px); animation-timing-function: ease-out; }
+  88%  { transform: translateX(0) translateY(-6px); animation-timing-function: ease-in; }
+  91%  { transform: translateX(0) translateY(7px); animation-timing-function: ease-out; }
+  94%  { transform: translateX(0) translateY(-2px); animation-timing-function: ease-in; }
+  97%  { transform: translateX(0) translateY(2px); animation-timing-function: ease-out; }
+  100% { transform: translateX(0) translateY(0); }
+}
+
+@keyframes slideInFromRight {
+  0% { transform: translateX(100vw); }
+  80% { transform: translateX(0); }
+  100% { transform: translateX(0); }
+}
+
+@keyframes counterTilt {
+  0% { transform: rotate(15deg); }
+  80% { transform: rotate(15deg); }
+  100% { transform: rotate(0deg); }
+}
+
+@keyframes hideCable {
+  0% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+@keyframes speedOffLeft {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-150vw); }
+}
+
+.nav-links a.nav-item-admissions::before {
+  top: 0; /* Reset top positioning so it perfectly covers the button */
+  border-radius: 99px;
+  height: 100%; /* Pill shape starts full height */
+  opacity: 1; /* Always visible */
+  transform: scale(1); /* Full size by default */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  
+
+}
+
+.nav-links a.nav-item-admissions.active::before, 
+.nav-links a.nav-item-admissions:hover::before {
+  height: 100%; /* Never extends below */
+  transform: scale(1); /* No scale effect */
+  border-radius: 99px; /* Keeps it perfectly pill-shaped */
+  box-shadow: 0 4px 12px rgba(91, 196, 219, 0.4); /* Subtle colored glow */
+}
+
+/* 🐛 Caterpillar drops onto the button AFTER it settles */
+.nav-links a.nav-item-admissions::after {
+  content: '';
+  position: absolute;
+  bottom: calc(100% - 12px); /* Rests comfortably on the pill */
+  left: 50%;
+  width: 95px;
+  height: 55px;
+  background-image: url('/caterpiller.png');
+  background-size: contain;
+  background-position: bottom center;
+  background-repeat: no-repeat;
+  z-index: 4;
+  pointer-events: none;
+  /* Hidden initially, drops in after the button has settled (5s delay) */
+  animation: caterpillarDrop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 4.5s both;
+}
+
+@keyframes caterpillarDrop {
+  0% {
+    transform: translateX(-50%) translateY(-40px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Background colors assigned inherently so they don't fade from transparent */
+.nav-links a.nav-item-worlds::before { background-color: #f93100; }
+.nav-links a.nav-item-campus::before { background-color: #ff911b; }
+.nav-links a.nav-item-routine::before { background-color: #ffc000; }
+.nav-links a.nav-item-parents::before { background-color: #a7c850; }
+.nav-links a.nav-item-testimonials::before { background-color: var(--purple, #8b5cf6); }
+.nav-links a.nav-item-admissions::before { background-color: #5bc4db; }
+
+/* 🏗️ The Crane Truck Image */
+.nav-links::after {
+  content: '';
+  position: absolute;
+  right: 55px; /* Shifted right so crane holds the button center */
+  top: -2px; /* Hook at 40px into image → lands at button's top edge */
+  width: 190px;
+  height: 152px; 
+  background-image: url('/truck.png');
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 6005;
+  pointer-events: none;
+  animation: slideInFromRight 4s cubic-bezier(0.2, 0.8, 0.2, 1) 0.5s both, speedOffLeft 1.5s cubic-bezier(0.75, 0, 1, 0.35) 3.7s forwards;
+}
+
+/* Old nav links styling removed */
+
+.nav-toggle {
+  width: 50px;
+  height: 50px;
+  display: none;
+  border-radius: 18px;
+  background: #fff0b4;
+}
+
+.nav-toggle span {
+  display: block;
+  width: 23px;
+  height: 3px;
+  border-radius: 999px;
+  background: var(--ink);
+  margin: 5px auto;
+}
+
+@media (max-width: 1040px) {
+  .site-header {
+    padding: 0;
+  }
+
+  .nav-wrap {
+    border-radius: 0;
+    padding: 12px 24px;
+    border-bottom: 2px solid rgba(36, 49, 63, 0.08);
+  }
+
+  .nav-toggle {
+    display: block;
+  }
+
+  .nav-links {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 100%; /* Sits exactly below the header */
+    padding: 24px;
+    border-radius: 0 0 28px 28px;
+    background: rgba(255,255,255,.98);
+    box-shadow: 0 20px 40px rgba(36, 49, 63, 0.15);
+    display: none;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+    z-index: 5000;
+  }
+
+  .nav-links.open {
+    display: flex;
+  }
+
+  .nav-links a {
+    text-align: center;
+    padding: 16px 20px;
+    font-size: 1.1rem;
+  }
+
+  /* Reset the ribbon drop-down effect for mobile menus */
+  .nav-links a::before {
+    display: none; /* Simplify mobile to use direct background colors */
+  }
+
+  .nav-links a.active, .nav-links a:hover {
+    border-radius: 16px;
+    color: var(--white) !important;
+  }
+
+  .nav-links a.nav-item-worlds.active, .nav-links a.nav-item-worlds:hover { background-color: #f93100; }
+  .nav-links a.nav-item-campus.active, .nav-links a.nav-item-campus:hover { background-color: #ff911b; }
+  .nav-links a.nav-item-routine.active, .nav-links a.nav-item-routine:hover { background-color: #ffc000; }
+  .nav-links a.nav-item-parents.active, .nav-links a.nav-item-parents:hover { background-color: #a7c850; }
+  .nav-links a.nav-item-testimonials.active, .nav-links a.nav-item-testimonials:hover { background-color: var(--purple, #8b5cf6); }
+  .nav-links a.nav-item-admissions { margin: 8px 0 0 0; }
+  .nav-links a.nav-item-admissions.active, .nav-links a.nav-item-admissions:hover { background-color: #5bc4db; }
+
+}
