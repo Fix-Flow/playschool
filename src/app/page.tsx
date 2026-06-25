@@ -1,25 +1,14 @@
-import Loader from "@/components/Loader";
-import CustomCursor from "@/components/CustomCursor";
-import Ambient from "@/components/Ambient";
-import Navbar from "@/components/Navbar";
-
-import Hero from "@/components/hero/Hero";
-import About from "@/components/about/About";
-import Programs from "@/components/programs/Programs";
-import Activities from "@/components/activities/Activities";
-import Gallery from "@/components/gallery/Gallery";
-import Testimonials from "@/components/testimonials/Testimonials";
-import Contact from "@/components/contact/Contact";
-import GlobalInteractions from "@/components/GlobalInteractions";
+import Hero from "@/components/sections/hero/Hero";
+import About from "@/components/sections/about/About";
+import Programs from "@/components/sections/programs/Programs";
+import Activities from "@/components/sections/activities/Activities";
+import Gallery from "@/components/sections/gallery/Gallery";
+import Testimonials from "@/components/sections/testimonials/Testimonials";
+import Contact from "@/components/sections/contact/Contact";
 
 export default function Home() {
   return (
     <>
-      <Loader />
-      <CustomCursor />
-      <Ambient />
-      <Navbar />
-      
       <main>
         <Hero />
         <About />
@@ -30,7 +19,6 @@ export default function Home() {
       </main>
 
       <Contact />
-      <GlobalInteractions />
     </>
   );
 }

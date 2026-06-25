@@ -1,0 +1,271 @@
+/* ============================================
+   TOKENS — derived from logo (navy + red/yellow/green)
+   ============================================ */
+:root {
+  --nav-navy: var(--logo-navy);
+  --nav-navy-soft: rgba(9, 34, 58, 0.5);
+  --nav-paper: var(--bg-cream);
+  --nav-red: var(--logo-red);
+  --nav-yellow: var(--logo-yellow);
+  --nav-green: var(--logo-green);
+  --nav-white: #ffffff;
+}
+
+/* ============================================
+   HEADER SHELL
+   ============================================ */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 6000;
+  width: 100%;
+  background: var(--bg-cream);
+  box-shadow: 0 8px 24px rgba(11, 45, 76, 0.15); /* Enhanced drop shadow */
+  overflow: visible;
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.site-header.hidden-nav {
+  transform: translateY(-130px);
+}
+
+.header-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  height: 100px;
+  padding: 0 24px;
+  overflow: visible;
+}
+
+.logo-wrap {
+  display: flex;
+  align-items: center;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.brand-logo-img {
+  height: 68px;
+  width: auto;
+  object-fit: contain;
+}
+
+/* ============================================
+   NAV WRAP — single hero: the cat lives here
+   ============================================ */
+.nav-wrap {
+  display: flex;
+  align-items: stretch;
+  position: relative;
+  overflow: visible;
+}
+
+.nav-links {
+  display: flex;
+  align-items: stretch;
+  position: relative;
+  overflow: visible;
+  gap: 4px;
+}
+
+/* ============================================
+   THE CAT — single mascot, single job:
+   face peeks over the TOP edge of the active pill,
+   tail dangles from the BOTTOM edge — both fully inside the bar
+   ============================================ */
+.nav-cat-face {
+  position: absolute;
+  top: -26px; /* sits right on top of the pill edge */
+  width: 100px;
+  height: 80px; 
+  background-image: url('/cat-link.png');
+  background-size: contain;
+  background-position: bottom center;
+  background-repeat: no-repeat;
+  z-index: 3; /* above the pill background, below the link text */
+  pointer-events: none;
+  transform: translateX(-50%);
+  transition: left 0.55s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s ease;
+  opacity: 0;
+}
+
+.nav-cat-tail {
+  display: none !important; /* user requested only the head and hands */
+}
+
+.nav-cat-face.is-visible {
+  opacity: 1;
+}
+
+/* ============================================
+   LINKS — one accent system, not five
+   ============================================ */
+.nav-links a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 104px;
+  padding: 0 18px;
+  height: 100%;
+  color: var(--nav-navy-soft);
+  font-weight: 800;
+  font-size: 0.92rem;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  position: relative;
+  z-index: 2;
+  transition: color 0.25s ease;
+}
+
+.nav-links a .nav-text {
+  position: relative;
+  z-index: 2;
+}
+
+.nav-links a.active .nav-text {
+  /* margin-top removed since the new cat image sits completely above the pill */
+}
+
+/* Active pill background rendered by Framer Motion */
+.active-pill-bg {
+  position: absolute;
+  inset: 26px 6px;
+  border-radius: 14px;
+  background: var(--nav-navy);
+  z-index: 1;
+}
+
+.nav-links a.active {
+  color: var(--nav-white);
+}
+
+.nav-links a:hover:not(.active) {
+  color: var(--nav-navy);
+}
+
+/* ============================================
+   CTA — one clean bounce-in, no cascading wobble
+   ============================================ */
+.nav-links a.nav-item-admissions {
+  margin: 0 0 0 16px;
+  padding: 12px 26px;
+  height: auto;
+  align-self: center;
+  border-radius: 99px;
+  background: var(--nav-red);
+  color: var(--nav-white) !important;
+  animation: ctaSettle 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s both;
+}
+
+.nav-links a.nav-item-admissions::before {
+  content: none; /* uses its own solid background, not the pill system */
+}
+
+.nav-links a.nav-item-admissions:hover {
+  box-shadow: 0 4px 14px rgba(27, 42, 74, 0.35);
+}
+
+@keyframes ctaSettle {
+  0%   { transform: translateY(-14px) scale(0.92); opacity: 0; }
+  70%  { transform: translateY(2px) scale(1.02); opacity: 1; }
+  100% { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+/* ============================================
+   MOBILE
+   ============================================ */
+.nav-toggle {
+  width: 50px;
+  height: 50px;
+  display: none;
+  border-radius: 18px;
+  background: var(--nav-paper);
+  border: 2px solid var(--nav-navy-soft);
+  position: relative;
+  z-index: 6000;
+}
+
+@media (max-width: 1040px) {
+  .site-header {
+    padding: 0;
+  }
+
+  .nav-wrap {
+    padding: 12px 24px;
+  }
+
+  .nav-cat-face,
+  .nav-cat-tail {
+    display: none !important; /* hero moment is a desktop-width flourish; mobile menu is simple */
+  }
+
+  .nav-toggle {
+    display: block;
+  }
+
+  .nav-links {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: auto;
+    width: 300px;
+    max-width: 85vw;
+    height: 100vh;
+    padding: 90px 24px 40px;
+    border-radius: 24px 0 0 24px;
+    background: var(--nav-paper);
+    box-shadow: -15px 0 40px rgba(27, 42, 74, 0.15);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+    z-index: 5000;
+    
+    /* Smooth Drawer Animation */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(100%);
+    transition: opacity 0.3s ease, transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), visibility 0s linear 0.4s;
+    pointer-events: none;
+  }
+
+  .nav-links.open {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(0);
+    pointer-events: auto;
+    transition: opacity 0.3s ease, transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), visibility 0s linear 0s;
+  }
+
+  .nav-links a {
+    text-align: left;
+    padding: 10px 20px;
+    font-size: 1.1rem;
+    min-width: 0;
+    width: auto;
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  .nav-links a.nav-item-admissions {
+    margin: 16px 0 0 0;
+    align-self: flex-start;
+  }
+
+  .active-pill-bg {
+    inset: 0px;
+    border-radius: 14px;
+  }
+
+  .nav-links a.nav-item-admissions {
+    margin: 8px 0 0 0;
+  }
+}

@@ -1,0 +1,59 @@
+/* ======================= FOOTER ======================= */
+
+.footer {
+  margin-top: 30px;
+  padding: 90px 18px 36px;
+  background: var(--ink);
+  color: var(--white);
+  position: relative;
+  overflow: hidden;
+}
+
+.footer-clouds {
+  position: absolute;
+  top: -38px;
+  left: 0;
+  right: 0;
+  height: 80px;
+  background:
+    radial-gradient(circle at 5% 80%, #effcff 0 43px, transparent 44px),
+    radial-gradient(circle at 15% 70%, #effcff 0 43px, transparent 44px),
+    radial-gradient(circle at 25% 82%, #effcff 0 43px, transparent 44px),
+    radial-gradient(circle at 35% 70%, #effcff 0 43px, transparent 44px),
+    radial-gradient(circle at 45% 82%, #effcff 0 43px, transparent 44px),
+    radial-gradient(circle at 55% 70%, #effcff 0 43px, transparent 44px),
+    radial-gradient(circle at 65% 82%, #effcff 0 43px, transparent 44px),
+    radial-gradient(circle at 75% 70%, #effcff 0 43px, transparent 44px),
+    radial-gradient(circle at 85% 82%, #effcff 0 43px, transparent 44px),
+    radial-gradient(circle at 95% 70%, #effcff 0 43px, transparent 44px);
+}
+
+.footer-inner {
+  width: min(1180px, 100%);
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 22px;
+  flex-wrap: wrap;
+  position: relative;
+}
+
+.footer p,
+.footer .brand-text small {
+  color: rgba(255,255,255,.72);
+}
+
+.footer-links {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.footer-links a {
+  padding: 10px 14px;
+  border-radius: 999px;
+  background: rgba(255,255,255,.10);
+  font-weight: 1000;
+}
+

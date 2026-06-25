@@ -1,7 +1,12 @@
 import type { Metadata } from "next";
 import { Baloo_2, Nunito } from "next/font/google";
 import "./globals.css";
-
+import Loader from "@/components/ui/Loader";
+import CustomCursor from "@/components/ui/CustomCursor";
+import Ambient from "@/components/ui/Ambient";
+import Navbar from "@/components/layout/Navbar";
+import GlobalInteractions from "@/components/layout/GlobalInteractions";
+import WhatsAppWidget from "@/components/layout/WhatsAppWidget";
 const baloo2 = Baloo_2({
   variable: "--font-baloo-2",
   subsets: ["latin"],
@@ -57,8 +62,15 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${baloo2.variable} ${nunito.variable}`}>
       <body className="min-h-screen flex flex-col antialiased">
+        <Loader />
+        <CustomCursor />
+        <Ambient />
+        <Navbar />
 
         {children}
+
+        <GlobalInteractions />
+        <WhatsAppWidget />
       </body>
     </html>
   );

@@ -1,0 +1,13 @@
+/* ======================= REVEAL ======================= */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(38px);
+  transition: opacity .75s ease, transform .75s ease;
+}
+
+.reveal.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
