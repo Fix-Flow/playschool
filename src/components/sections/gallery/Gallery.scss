@@ -1,6 +1,21 @@
 .gallery-section {
   padding: 180px 0 80px;
-  background: var(--cream);
+  background-image: url('/gallery_section-bg_image.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  z-index: 1;
+
+  .section-header {
+    margin-bottom: 60px;
+
+    .badge {
+      background: #ffe4e6;
+      border-color: #fecdd3;
+      color: #e11d48;
+    }
+  }
 }
 
 .gallery-container {

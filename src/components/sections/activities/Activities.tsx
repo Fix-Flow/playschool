@@ -27,6 +27,7 @@ export default function Activities() {
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6 }}
         >
+          <div className="badge">Fun & Play</div>
           <h2>Joyful Activities</h2>
           <p>Every day brings a new opportunity to explore, create, and play!</p>
         </motion.div>

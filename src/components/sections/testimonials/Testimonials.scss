@@ -134,6 +134,11 @@
 }
 
 .testimonials-section .section-header {
+  .badge {
+    background: #e0f2fe;
+    border-color: #bae6fd;
+    color: #0369a1;
+  }
   h2 { color: #ffe88a; } /* Make text bright against dark background */
   p { color: #d4c1ff; }
 }

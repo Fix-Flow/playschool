@@ -3,6 +3,8 @@
   margin: 0 auto;
   padding: 140px 0; /* Increased padding to make section less compact */
   background: var(--bg-pale-green);
+  position: relative;
+  z-index: 2;
 }
 
 .about-container {

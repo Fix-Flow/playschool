@@ -43,7 +43,6 @@ const programData = [
 export default function Programs() {
   return (
     <section className="programs-section" id="programs" style={{ position: "relative" }}>
-      <CloudDivider position="top-inverted" fillColorVar="var(--bg-pale-green)" />
 
       <div className="programs-container">
         <motion.div 
