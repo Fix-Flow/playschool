@@ -3,10 +3,16 @@
 interface CloudDividerProps {
   fillColorVar?: string;
   className?: string;
-  position?: "top" | "bottom";
+  position?: "top" | "bottom" | "top-inverted";
+  backgroundImage?: string;
 }
 
-export function CloudDivider({ fillColorVar = "var(--paper)", className = "", position = "top" }: CloudDividerProps) {
+export function CloudDivider({ 
+  fillColorVar = "var(--paper)", 
+  className = "", 
+  position = "top",
+  backgroundImage
+}: CloudDividerProps) {
   const positioningStyles = position === "top" ? {
     position: "absolute" as const,
     top: 0,
@@ -16,26 +22,75 @@ export function CloudDivider({ fillColorVar = "var(--paper)", className = "", po
     zIndex: 10,
     color: fillColorVar,
     lineHeight: 0,
-  } : {};
+  } : position === "top-inverted" ? {
+    position: "absolute" as const,
+    top: -3,
+    left: 0,
+    width: "100%",
+    zIndex: 10,
+    color: fillColorVar,
+    lineHeight: 0,
+  } : {
+    position: "absolute" as const,
+    bottom: 0,
+    left: 0,
+    width: "100%",
+    transform: "translateY(99%) rotate(180deg)",
+    zIndex: 10,
+    color: fillColorVar,
+    lineHeight: 0,
+  };
+
+  const pathD = position === "top-inverted"
+    ? "M0,0 L0,100 a 80,80 0 0,1 120,-30 a 40,40 0 0,1 60,10 a 100,100 0 0,1 180,-40 a 50,50 0 0,1 80,-10 a 140,140 0 0,1 240,40 a 60,60 0 0,1 100,-20 a 110,110 0 0,1 190,30 a 50,50 0 0,1 80,10 a 90,90 0 0,1 150,10 L1200,0 Z"
+    : "M0,120 L0,100 a 80,80 0 0,1 120,-30 a 40,40 0 0,1 60,10 a 100,100 0 0,1 180,-40 a 50,50 0 0,1 80,-10 a 140,140 0 0,1 240,40 a 60,60 0 0,1 100,-20 a 110,110 0 0,1 190,30 a 50,50 0 0,1 80,10 a 90,90 0 0,1 150,10 L1200,120 Z";
+
+  const shadowFilter = position === "top-inverted"
+    ? "drop-shadow(0px 12px 24px rgba(9, 34, 58, 0.25))"
+    : "drop-shadow(0px -12px 24px rgba(9, 34, 58, 0.25))";
 
   return (
     <div className={`cloud-divider ${className}`} style={positioningStyles}>
       <svg 
         viewBox="0 0 1200 120" 
         preserveAspectRatio="none" 
-        style={{ width: "100%", height: "clamp(60px, 8vw, 120px)", display: "block" }}
+        style={{ 
+          width: "100%", 
+          height: "clamp(60px, 8vw, 120px)", 
+          display: "block", 
+          overflow: "visible", 
+        }}
         aria-hidden="true"
       >
+        {backgroundImage && (
+          <defs>
+            <pattern id="cloud-bg-pattern" patternUnits="userSpaceOnUse" width="1200" height="120">
+              <image href={backgroundImage} x="0" y="0" width="1200" height="120" preserveAspectRatio="xMidYMid slice" />
+            </pattern>
+          </defs>
+        )}
+        {/* 1. Filled path that casts the drop shadow, clipped to remove flat-edge shadows */}
         <path 
-          d="M0,120 L0,70 
-             C 50,10 100,10 150,70
-             C 200,-20 300,-20 350,60
-             C 400,20 500,20 550,70
-             C 650,-30 750,-30 850,60
-             C 900,10 1000,10 1050,60
-             C 1100,20 1150,20 1200,70
-             L1200,120 Z" 
-          fill="currentColor" 
+          d={pathD}
+          fill="currentColor"
+          filter={shadowFilter}
+          style={{
+            clipPath: position === "top-inverted"
+              ? "polygon(-100% 0%, 200% 0%, 200% 200%, -100% 200%)"
+              : "polygon(-100% -100%, 200% -100%, 200% 100%, -100% 100%)"
+          }}
+        />
+        {/* 2. Opaque filled path (no filter, no clipping) that covers the shadow path and renders the smooth curves */}
+        <path 
+          d={pathD} 
+          fill={backgroundImage ? "url(#cloud-bg-pattern)" : "currentColor"} 
+        />
+        {/* 3. A crisp stroked path (no filter) to act as a cut-paper highlight/shadow edge */}
+        <path 
+          d="M0,100 a 80,80 0 0,1 120,-30 a 40,40 0 0,1 60,10 a 100,100 0 0,1 180,-40 a 50,50 0 0,1 80,-10 a 140,140 0 0,1 240,40 a 60,60 0 0,1 100,-20 a 110,110 0 0,1 190,30 a 50,50 0 0,1 80,10 a 90,90 0 0,1 150,10"
+          fill="none"
+          stroke="rgba(9, 34, 58, 0.08)"
+          strokeWidth="1.5"
         />
       </svg>
     </div>

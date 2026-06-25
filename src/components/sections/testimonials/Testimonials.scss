@@ -26,6 +26,14 @@
     /* mix-blend-mode removed since user images typically have transparency */
     animation: floatMoon 8s ease-in-out infinite;
     z-index: 1;
+
+    @media (max-width: 1024px) {
+      width: 110px;
+      height: 110px;
+      right: 5%;
+      top: 2%;
+      opacity: 0.6;
+    }
   }
 
   .astronaut {
@@ -41,6 +49,14 @@
     /* mix-blend-mode removed since user images typically have transparency */
     animation: spaceFloat 15s ease-in-out infinite alternate;
     z-index: 1;
+
+    @media (max-width: 1024px) {
+      width: 120px;
+      height: 120px;
+      left: 3%;
+      top: 5%;
+      opacity: 0.6;
+    }
   }
 
   .rocket {
@@ -56,6 +72,13 @@
     /* mix-blend-mode removed since user images typically have transparency */
     transform: rotate(45deg); /* Sit nicely on the top right curve */
     z-index: 2;
+
+    @media (max-width: 1024px) {
+      width: 80px;
+      height: 80px;
+      top: -30px;
+      left: 60px;
+    }
   }
 
   .star {
@@ -110,16 +133,20 @@
   margin: 0 auto;
 }
 
-.section-header {
+.testimonials-section .section-header {
   h2 { color: #ffe88a; } /* Make text bright against dark background */
   p { color: #d4c1ff; }
 }
 
 .reviews-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 40px;
   margin-top: 60px;
+
+  @media (max-width: 1024px) {
+    gap: 24px;
+  }
 }
 
 /* Cartoon Shrine Card */
@@ -132,6 +159,15 @@
 
   &:hover {
     transform: translateY(-8px) rotate(-1deg);
+  }
+
+  &:last-child {
+    @media (max-width: 960px) and (min-width: 768px) {
+      grid-column: span 2;
+      max-width: 500px;
+      margin-inline: auto;
+      width: 100%;
+    }
   }
 
   /* The actual content box with thick border */

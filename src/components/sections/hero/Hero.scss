@@ -38,30 +38,16 @@
 
 .hero-split__text-panel {
   flex: 0 0 45vw; /* Increased width to prevent squishing */
-  background: var(--bg-cream);
   position: relative;
   z-index: 2; /* Sits above the image panel */
   display: flex;
   align-items: center;
   padding-left: max(5%, calc((100vw - 1200px) / 2 + 20px)); /* Align content to grid */
   padding-right: 40px;
+  padding-bottom: 80px; /* Safe padding for bottom clouds */
 }
 
-.hero-split__seam-overlay {
-  position: absolute;
-  top: 0;
-  left: calc(100% - 2px); /* Overlap slightly to prevent sub-pixel rendering gaps */
-  width: 15vw; /* Width of the curve overlap */
-  height: 100%;
-  pointer-events: none;
-  z-index: 2;
 
-  svg {
-    width: 100%;
-    height: 100%;
-    display: block;
-  }
-}
 
 .hero-graphic {
   position: absolute;
@@ -224,9 +210,10 @@
 .hero-split__image-panel {
   flex: 1; /* Takes the rest of the space */
   position: relative;
-  z-index: 1; /* Sits UNDER the text panel's overlapping seam */
-  margin-left: -15vw; /* Pull it underneath the overlapping seam */
   overflow: hidden;
+  /* Use a mask to flawlessly fade the left edge of the photo to transparent */
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 15vw);
+  mask-image: linear-gradient(to right, transparent 0%, black 15vw);
 }
 
 /* ---------------------------------------------------------------
@@ -278,39 +265,7 @@
   opacity: 1;
 }
 
-.hero-split__dots {
-  position: absolute;
-  bottom: clamp(64px, 13vw, 112px); /* clear of .hero-split__bottom-wave's max height (90px) plus breathing room */
-  left: 58.3%;
-  transform: translateX(-50%);
-  display: flex;
-  gap: 10px;
-  z-index: 6; /* above .hero-split__bottom-wave (z-index 4) */
-}
 
-.hero-split__dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  border: 2px solid var(--white, #fff);
-  background: transparent;
-  padding: 0;
-  cursor: pointer;
-  transition: background 0.2s ease, transform 0.2s ease;
-
-  &:hover {
-    transform: scale(1.15);
-  }
-
-  &.is-active {
-    background: var(--white, #fff);
-  }
-
-  &:focus-visible {
-    outline: 2px solid var(--yellow, #ffd84a);
-    outline-offset: 3px;
-  }
-}
 
 /* ---------------------------------------------------------------
    MOBILE SCALLOP (hidden on desktop, see media query below)
@@ -333,6 +288,7 @@
 
 @media (max-width: 880px) {
   .hero-split__inner {
+    display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: auto auto;
     aspect-ratio: auto; /* desktop's fixed 1200:700 ratio doesn't apply once stacked */
@@ -341,12 +297,17 @@
   }
 
   .hero-split__text-panel {
+    display: flex;
+    flex-direction: column;
     grid-row: auto; /* desktop stacks both panels in row 1 for clip-path math; mobile needs them in normal flow */
     clip-path: none;
     order: 2;
-    padding: 36px 24px 56px;
+    padding: 36px 24px 130px;
     justify-content: center;
+    align-items: center;
     text-align: center;
+    flex: none;
+    width: 100%;
   }
 
   .hero-split__text-content {
@@ -370,6 +331,7 @@
   }
 
   .hero-split__image-panel {
+    flex: none;
     grid-row: auto; /* see note on .hero-split__text-panel above */
     clip-path: none;
     order: 1;
@@ -403,10 +365,33 @@
       fill: var(--bg-cream);
     }
   }
+
+  // Responsive floating shapes styling
+  .hero-rainbow {
+    width: 90px !important;
+    height: 90px !important;
+    left: 75% !important;
+    bottom: 80% !important;
+
+    @media (max-width: 480px) {
+      display: none !important;
+    }
+  }
+
+  .hero-pencil {
+    width: 45px !important;
+    height: 45px !important;
+    right: 10% !important;
+    bottom: 5% !important;
+
+    @media (max-width: 480px) {
+      display: none !important;
+    }
+  }
 }
 
 @media (max-width: 480px) {
   .hero-split__text-content h1 {
-    font-size: clamp(2rem, 8vw, 2.6rem);
+    font-size: clamp(1.8rem, 8vw, 2.4rem);
   }
 }

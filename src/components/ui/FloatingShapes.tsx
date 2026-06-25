@@ -17,6 +17,7 @@ interface FloatingShapeProps {
   duration?: number;
   zIndex?: number;
   isStatic?: boolean;
+  className?: string;
 }
 
 export function FloatingShape({
@@ -31,6 +32,7 @@ export function FloatingShape({
   duration = 8,
   zIndex = 0,
   isStatic = false,
+  className = "",
 }: FloatingShapeProps) {
   const style = {
     position: "absolute" as const,
@@ -53,7 +55,7 @@ export function FloatingShape({
 
   return (
     <motion.div
-      className="floating-shape"
+      className={`floating-shape ${className}`}
       style={style}
       animate={isStatic ? {} : animation}
       transition={
@@ -65,7 +67,7 @@ export function FloatingShape({
               repeatType: "reverse",
               ease: "easeInOut",
               delay,
-            }
+              }
       }
       aria-hidden="true"
     >

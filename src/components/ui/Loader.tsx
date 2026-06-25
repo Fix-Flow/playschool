@@ -45,7 +45,7 @@ export default function Loader() {
         alignItems: "center"
       }}
     >
-      <div style={{ position: "relative", width: "500px", height: "400px", margin: "0 auto" }}>        
+      <div className="loader-container">        
         {/* Main Tree with Animals (Foreground) */}
         <img 
           src="/cartoon_trees_with_animals.png" 

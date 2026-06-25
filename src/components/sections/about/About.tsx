@@ -9,11 +9,6 @@ export default function About() {
   return (
     <section className="about-section" id="about" style={{ position: "relative" }}>
       <CloudDivider fillColorVar="var(--bg-pale-green)" />
-      {/* Background Shapes */}
-      <FloatingShape type="rainbow" colorVar="var(--logo-red)" size={180} top="-10px" left="-50px" duration={10} delay={0} />
-      <FloatingShape type="squiggle" colorVar="var(--logo-blue)" size={80} top="20%" right="5%" duration={12} delay={2} />
-      <FloatingShape type="cloud" colorVar="var(--logo-navy)" size={140} bottom="10%" left="10%" duration={15} delay={1} />
-      <FloatingShape type="cross" colorVar="var(--logo-yellow)" size={40} bottom="20%" right="15%" duration={9} delay={3} />
 
       <div className="about-container">
         
@@ -25,7 +20,9 @@ export default function About() {
           transition={{ duration: 0.7, type: "spring", bounce: 0.2 }}
         >
           <div className="founder-card">
-            <div className="photo-placeholder">Founder Photo</div>
+            <div className="photo-wrapper">
+              <img src="/principal.jpg" alt="Principal and student" className="founder-photo" />
+            </div>
             <div className="founder-info">
               <h3>Jane Doe</h3>
               <p>Founder & Principal</p>

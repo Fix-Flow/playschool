@@ -1,7 +1,7 @@
 .whatsapp-widget {
   position: fixed;
-  bottom: 24px;
-  right: 24px;
+  bottom: calc(24px + env(safe-area-inset-bottom, 0px));
+  right: calc(24px + env(safe-area-inset-right, 0px));
   width: 60px;
   height: 60px;
   background-color: #25d366; /* WhatsApp brand color */
@@ -11,7 +11,7 @@
   align-items: center;
   justify-content: center;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  z-index: 1000;
+  z-index: 99999;
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
   cursor: pointer;
   text-decoration: none;
@@ -51,8 +51,8 @@
 /* Adjust for mobile */
 @media (max-width: 768px) {
   .whatsapp-widget {
-    bottom: 20px;
-    right: 20px;
+    bottom: calc(20px + env(safe-area-inset-bottom, 0px));
+    right: calc(20px + env(safe-area-inset-right, 0px));
     width: 54px;
     height: 54px;
     

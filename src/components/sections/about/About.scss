@@ -1,7 +1,7 @@
 .about-section {
   width: 100%;
   margin: 0 auto;
-  padding: 80px 0;
+  padding: 140px 0; /* Increased padding to make section less compact */
   background: var(--bg-pale-green);
 }
 
@@ -31,17 +31,22 @@
     max-width: 320px;
     width: 100%;
 
-    .photo-placeholder {
+    .photo-wrapper {
       width: 100%;
-      height: 360px;
-      background: rgba(0, 153, 216, 0.1); /* light logo blue tint */
+      height: 380px; /* Slightly taller for the nice photo */
       border-radius: 20px;
-      display: grid;
-      place-items: center;
-      font-weight: 800;
-      color: var(--logo-navy);
-      border: 4px dashed var(--logo-navy);
+      overflow: hidden;
       margin-bottom: 20px;
+      background: var(--bg-pale-yellow); /* In case image doesn't load instantly */
+
+      .founder-photo {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        transform: scale(1.35); /* Adjust this number to zoom in (e.g., 1.2, 1.5) */
+        transform-origin: center 25%; /* Change this to adjust which part stays in frame (e.g., center 10% for faces) */ 
+      }
     }
 
     .founder-info {
@@ -87,24 +92,30 @@
 
 .about-content {
   h2 {
-    font-size: clamp(2.5rem, 4vw, 3.5rem);
-    color: var(--ink);
+    font-size: clamp(2.4rem, 5.5vw, 3.8rem);
+    color: var(--logo-navy);
     margin-bottom: 24px;
+    font-weight: 900;
+    letter-spacing: -1.5px;
+    line-height: 1.1;
     font-family: var(--font-baloo-2);
   }
 
   .lead {
-    font-size: 1.4rem;
-    font-weight: 800;
-    color: var(--logo-navy);
-    margin-bottom: 20px;
+    font-size: clamp(1.25rem, 3vw, 1.6rem);
+    color: var(--logo-blue);
+    font-weight: 700;
+    margin-bottom: 24px;
+    line-height: 1.4;
+    letter-spacing: -0.5px;
   }
 
   p {
-    font-size: 1.1rem;
-    color: var(--muted);
-    line-height: 1.6;
+    font-size: 1.15rem;
+    color: var(--text-gray);
+    line-height: 1.8;
     margin-bottom: 40px;
+    letter-spacing: 0.2px;
   }
 
   .values-grid {
@@ -140,15 +151,37 @@
 }
 
 @media (max-width: 992px) {
+  .about-section {
+    padding: 80px 0;
+  }
+
   .about-container {
     grid-template-columns: 1fr;
     text-align: center;
+    gap: 40px;
   }
 
   .about-content {
     .values-grid {
-      grid-template-columns: 1fr;
+      grid-template-columns: repeat(2, 1fr);
       text-align: left;
+      gap: 20px;
+    }
+  }
+
+  .about-visual {
+    .c1 {
+      width: 150px;
+      height: 150px;
+      top: -20px;
+      left: 10%;
+    }
+
+    .c2 {
+      width: 120px;
+      height: 120px;
+      bottom: -15px;
+      right: 15%;
     }
   }
 }
@@ -176,4 +209,4 @@
   font-size: 1.55rem;
   font-weight: 1000;
 }
-
+

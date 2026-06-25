@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { FloatingShape } from "@/components/ui/FloatingShapes";
+
 import { CloudDivider } from "@/components/ui/CloudDivider";
 import "./Activities.scss";
 
@@ -18,11 +18,6 @@ export default function Activities() {
   return (
     <section className="activities-section" id="activities" style={{ position: "relative" }}>
       <CloudDivider fillColorVar="var(--bg-pale-blue)" />
-      {/* Background Shapes */}
-      <FloatingShape type="squiggle" colorVar="var(--logo-navy)" size={100} top="10%" left="-20px" duration={12} delay={1} />
-      <FloatingShape type="kite" colorVar="var(--logo-red)" size={120} top="-30px" right="10%" duration={14} delay={2} />
-      <FloatingShape type="ring" colorVar="var(--logo-blue)" size={160} bottom="-50px" right="-50px" duration={15} delay={0} />
-      <FloatingShape type="triangle" colorVar="var(--logo-green)" size={60} bottom="20%" left="15%" duration={9} delay={3} />
 
       <div className="activities-container">
         <motion.div 
@@ -53,8 +48,8 @@ export default function Activities() {
         </div>
       </div>
       
-      {/* Playful zigzag separator */}
-      <div className="zigzag-separator"></div>
+      {/* Cloud divider pointing downwards into the next section */}
+      <CloudDivider position="bottom" fillColorVar="var(--bg-pale-blue)" />
     </section>
   );
 }

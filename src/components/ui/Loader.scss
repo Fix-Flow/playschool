@@ -18,6 +18,18 @@
   visibility: hidden;
 }
 
+.loader-container {
+  position: relative;
+  width: 500px;
+  height: 400px;
+  margin: 0 auto;
+
+  @media (max-width: 768px) {
+    transform: scale(0.85);
+    transform-origin: center center;
+  }
+}
+
 .loader-orbit {
   width: min(620px, calc(100% - 32px));
   min-height: 510px;

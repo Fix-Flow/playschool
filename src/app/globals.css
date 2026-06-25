@@ -256,20 +256,11 @@ p {
 /* ======================= RESPONSIVE ======================= */
 
 @media (max-width: 1050px) {
-  .hero,
   .world-display,
   .campus-shell,
   .parents-panel,
   .admission-panel {
     grid-template-columns: 1fr;
-  }
-
-  .hero {
-    padding-top: 34px;
-  }
-
-  .hero-visual {
-    min-height: 620px;
   }
 
   .program-grid {
@@ -299,7 +290,6 @@ p {
   }
 
   .section,
-  .hero,
   .gallery-heading {
     width: min(100% - 24px, 1180px);
   }
@@ -307,63 +297,6 @@ p {
   .section {
     padding: 74px 0;
   }
-
-  .hero-copy h1 {
-    font-size: clamp(3.25rem, 15vw, 5.4rem);
-  }
-
-  .hero-actions .btn {
-    width: 100%;
-  }
-
-  .hero-proof {
-    grid-template-columns: 1fr;
-  }
-
-  .hero-visual {
-    min-height: 510px;
-  }
-
-  .storybook {
-    height: 500px;
-    border-radius: 42px;
-  }
-
-  .sun {
-    width: 72px;
-    height: 72px;
-  }
-
-  .rainbow-arc {
-    width: 285px;
-    height: 142px;
-  }
-
-  .school-building {
-    width: 205px;
-    height: 180px;
-    left: 50%;
-    top: 230px;
-    transform: translateX(-50%);
-  }
-
-  .roof {
-    left: 25px;
-    width: 145px;
-    height: 145px;
-    top: -72px;
-  }
-
-  .slide,
-  .swing,
-  .front-card,
-  .school-bus {
-    display: none;
-  }
-
-  .kid-a { left: 42px; bottom: 58px; }
-  .kid-b { right: 42px; bottom: 58px; }
-  .kid-c { left: 50%; bottom: 34px; transform: translateX(-50%); }
 
   .world-shell,
   .campus-shell,

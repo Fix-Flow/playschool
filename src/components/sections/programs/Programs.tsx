@@ -1,8 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { FloatingShape } from "@/components/ui/FloatingShapes";
 import { CloudDivider } from "@/components/ui/CloudDivider";
+
 import "./Programs.scss";
 
 const programData = [
@@ -43,12 +43,7 @@ const programData = [
 export default function Programs() {
   return (
     <section className="programs-section" id="programs" style={{ position: "relative" }}>
-      <CloudDivider fillColorVar="var(--paper)" />
-      {/* Background Shapes */}
-      <FloatingShape type="triangle" colorVar="var(--logo-yellow)" size={120} top="-10px" right="-40px" duration={11} delay={1} />
-      <FloatingShape type="ring" colorVar="var(--logo-green)" size={200} bottom="-80px" left="-80px" duration={14} delay={0} />
-      <FloatingShape type="pencil" colorVar="var(--logo-navy)" size={100} top="30%" left="5%" duration={13} delay={2} />
-      <FloatingShape type="cross" colorVar="var(--logo-red)" size={50} bottom="30%" right="8%" duration={10} delay={4} />
+      <CloudDivider position="top-inverted" fillColorVar="var(--bg-pale-green)" />
 
       <div className="programs-container">
         <motion.div 
