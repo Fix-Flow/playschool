@@ -18,6 +18,8 @@ export default function Navbar() {
   const [activeSection, setActiveSection] = useState("");
   const [isHidden, setIsHidden] = useState(false);
   const [catLeft, setCatLeft] = useState<number | null>(null);
+  const [catTop, setCatTop] = useState<number | null>(null);
+  const [catRightEdge, setCatRightEdge] = useState<number | null>(null);
   const isScrollingRef = useRef(false);
   const lastScrollY = useRef(0);
   const navLinksRef = useRef<HTMLElement>(null);
@@ -32,7 +34,11 @@ export default function Navbar() {
     const linkRect = linkEl.getBoundingClientRect();
     const wrapRect = wrapEl.getBoundingClientRect();
     const centerX = linkRect.left - wrapRect.left + linkRect.width / 2;
+    const centerY = linkRect.top - wrapRect.top + linkRect.height / 2;
+    const rightEdge = linkRect.left - wrapRect.left + linkRect.width;
     setCatLeft(centerX);
+    setCatTop(centerY);
+    setCatRightEdge(rightEdge);
   }, []);
 
   useEffect(() => {
@@ -150,6 +156,11 @@ export default function Navbar() {
             <div
               className={`nav-cat-tail ${isCatVisible ? "is-visible" : ""}`}
               style={catLeft !== null ? { left: `${catLeft}px` } : undefined}
+              aria-hidden="true"
+            />
+            <div
+              className={`mobile-nav-cat ${isCatVisible ? "is-visible" : ""}`}
+              style={catTop !== null && catRightEdge !== null ? { top: `${catTop}px`, left: `${catRightEdge}px` } : undefined}
               aria-hidden="true"
             />
 

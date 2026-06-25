@@ -282,11 +282,44 @@
 }
 
 /* ===================================================================
+   TABLET SCALING — retains side-by-side layout but scales elements down
+   =================================================================== */
+
+@media (max-width: 1024px) {
+  .hero-split__text-panel {
+    flex: 0 0 50vw;
+    padding-left: 5%;
+    padding-right: 24px;
+  }
+
+  .hero-split__text-content h1 {
+    font-size: clamp(2.2rem, 4vw, 2.8rem);
+  }
+
+  .hero-split__text-content p {
+    font-size: 0.95rem;
+    max-width: 320px;
+  }
+
+  .hero-split .bouncy-btn {
+    padding: 12px 24px;
+    font-size: 1.05rem;
+  }
+
+  .hero-graphic--sun {
+    width: 80px;
+    height: 80px;
+    top: -50px;
+    left: -40px;
+  }
+}
+
+/* ===================================================================
    MOBILE — independent layout, no wave split.
    Carousel on top (full width, rounded card), text below.
    =================================================================== */
 
-@media (max-width: 880px) {
+@media (max-width: 767px) {
   .hero-split__inner {
     display: grid;
     grid-template-columns: 1fr;
@@ -331,14 +364,7 @@
   }
 
   .hero-split__image-panel {
-    flex: none;
-    grid-row: auto; /* see note on .hero-split__text-panel above */
-    clip-path: none;
-    order: 1;
-    margin: 16px 16px 0;
-    border-radius: 32px;
-    aspect-ratio: 4 / 3;
-    min-height: 320px;
+    display: none;
   }
 
   .hero-split__dots {
@@ -350,11 +376,7 @@
   }
 
   .hero-split__scallop {
-    display: block;
-    order: 1.5; /* sits visually between image and text via row order below */
-    width: 100%;
-    line-height: 0;
-    margin-top: -2px;
+    display: none;
   }
 
   .hero-split__scallop svg {

@@ -35,6 +35,15 @@
     grid-template-columns: repeat(3, 1fr);
     gap: 16px;
   }
+
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: 480px) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
 }
 
 .activity-card {
@@ -55,6 +64,13 @@
     box-shadow: var(--shadow);
   }
 
+  @media (max-width: 480px) {
+    flex-direction: column;
+    text-align: center;
+    padding: 12px 8px;
+    gap: 8px;
+  }
+
   .icon-wrapper {
     width: 52px;
     height: 52px;
@@ -67,6 +83,12 @@
     font-size: 1.7rem;
     box-shadow: 0 6px 12px rgba(0,0,0,0.05);
     flex-shrink: 0;
+
+    @media (max-width: 480px) {
+      width: 40px;
+      height: 40px;
+      font-size: 1.3rem;
+    }
   }
 
   h3 {
@@ -75,6 +97,10 @@
     color: var(--ink);
     margin: 0;
     line-height: 1.2;
+
+    @media (max-width: 480px) {
+      font-size: 1rem;
+    }
   }
 
   &.bg-pink { background: linear-gradient(135deg, #fff0f0 0%, #ffffff 100%); }

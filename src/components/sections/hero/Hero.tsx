@@ -21,30 +21,7 @@ const HandDrawnSun = () => (
   </svg>
 );
 
-const AirplaneTrail = () => (
-  <svg className="hero-graphic hero-graphic--rocket" viewBox="0 0 200 200" aria-hidden="true">
-    {/* Outline Airplane pointing left */}
-    <g transform="translate(40, 20) rotate(-20)">
-      {/* Airplane Body (pill shape, nose pointing LEFT) */}
-      <path d="M40,15 C45,15 50,20 50,25 C50,30 45,35 40,35 L10,35 C5,35 0,30 0,25 C0,20 5,15 10,15 Z" fill="none" stroke="var(--logo-yellow)" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
-      {/* Cockpit Window Line */}
-      <path d="M10,15 C12,20 12,30 10,35" fill="none" stroke="var(--logo-yellow)" strokeWidth="2.5" strokeLinecap="round" />
-      {/* Little dots on body */}
-      <circle cx="20" cy="25" r="1" fill="var(--logo-yellow)" />
-      <circle cx="28" cy="25" r="1" fill="var(--logo-yellow)" />
-      <circle cx="36" cy="25" r="1" fill="var(--logo-yellow)" />
-      
-      {/* Top Wing */}
-      <path d="M25,15 C25,5 20,0 15,0 C10,0 12,10 15,15" fill="none" stroke="var(--logo-yellow)" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
-      {/* Bottom Wing */}
-      <path d="M25,35 C25,45 20,50 15,50 C10,50 12,40 15,35" fill="none" stroke="var(--logo-yellow)" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
-      
-      {/* Tail Fins */}
-      <path d="M45,15 L48,5 C46,5 42,10 40,15" fill="none" stroke="var(--logo-yellow)" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
-      <path d="M45,35 L48,45 C46,45 42,40 40,35" fill="none" stroke="var(--logo-yellow)" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
-    </g>
-  </svg>
-);
+
 
 export default function Hero() {
   return (
@@ -59,10 +36,8 @@ export default function Hero() {
             {/* Playful scattered shapes overlapping the text */}
             {/* <FloatingShape type="cloud" colorVar="#7B93A4" size={140} top="-100px" right="-15%" duration={14} delay={1} zIndex={10} />
             <FloatingShape type="cloud" colorVar="#7B93A4" size={80} top="-60px" right="-40%" duration={18} delay={3} zIndex={10} />
-            <FloatingShape type="cloud" colorVar="#7B93A4" size={60} top="-20px" right="-25%" duration={12} delay={2} zIndex={10} />
+            {/* <FloatingShape type="cloud" colorVar="#7B93A4" size={60} top="-20px" right="-25%" duration={12} delay={2} zIndex={10} />
              */}
-            <AirplaneTrail />
-            <FloatingShape type="rainbow" colorVar="var(--logo-red)" size={150} bottom="80%" left="80%" duration={12} delay={0} zIndex={10} isStatic={true} className="hero-rainbow" />
             <FloatingShape type="pencil" colorVar="#4EA8DE" size={65} bottom="-1%" right="20%" zIndex={10} isStatic={true} className="hero-pencil" />
             
             <div className="hero-badge">
