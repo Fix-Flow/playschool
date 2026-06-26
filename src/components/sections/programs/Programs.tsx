@@ -43,7 +43,6 @@ const programData = [
 export default function Programs() {
   return (
     <section className="programs-section" id="programs" style={{ position: "relative" }}>
-      <CloudDivider position="top-inverted" fillColorVar="var(--bg-pale-green)" />
 
       <div className="programs-container">
         <motion.div 
@@ -53,7 +52,7 @@ export default function Programs() {
         viewport={{ once: true, margin: "-100px" }}
         transition={{ duration: 0.6 }}
       >
-        <div className="badge">Our Curriculum</div>
+        <span className="badge">Our Curriculum</span>
         <h2>Programs We Offer</h2>
         <p>Tailored learning experiences for every stage of your child&apos;s early development.</p>
       </motion.div>

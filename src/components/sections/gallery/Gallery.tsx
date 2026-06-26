@@ -1,5 +1,7 @@
 "use client";
 
+import { useState, useEffect } from "react";
+
 import { motion } from "framer-motion";
 import Image from "next/image";
 import "./Gallery.scss";
@@ -18,17 +20,29 @@ const items = Array.from({ length: 39 }, (_, i) => {
 });
 
 export default function Gallery() {
+  const [isExpanded, setIsExpanded] = useState(false);
+  const [limit, setLimit] = useState(12);
+
+  useEffect(() => {
+    const handleResize = () => setLimit(window.innerWidth <= 768 ? 8 : 12);
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const displayedItems = isExpanded ? items : items.slice(0, limit);
+
   return (
     <section className="gallery-section" id="gallery">
       <div className="gallery-container">
         <div className="section-header text-center reveal">
-          <div className="badge">Memories</div>
+          <span className="badge">Memories</span>
           <h2>Our Happy Moments</h2>
           <p>A glimpse into the magical world of Tiny Learners.</p>
         </div>
 
-        <div className="grid-layout">
-          {items.map((item, index) => (
+        <div className={`grid-layout ${isExpanded ? "is-expanded" : ""}`}>
+          {displayedItems.map((item, index) => (
             <motion.div
               key={item.id}
               initial={{
@@ -63,6 +77,26 @@ export default function Gallery() {
               />
             </motion.div>
           ))}
+        </div>
+
+        <div className="gallery-actions">
+          <button 
+            className={`load-more-btn${isExpanded ? ' is-expanded' : ''}`}
+            onClick={() => {
+              if (isExpanded) {
+                const gallerySection = document.getElementById('gallery');
+                if (gallerySection) {
+                  gallerySection.scrollIntoView({ behavior: 'smooth' });
+                }
+                // Short timeout allows scroll to begin before layout snaps
+                setTimeout(() => setIsExpanded(false), 250);
+              } else {
+                setIsExpanded(true);
+              }
+            }}
+          >
+            {isExpanded ? "See Less" : "Load More"}
+          </button>
         </div>
       </div>
     </section>

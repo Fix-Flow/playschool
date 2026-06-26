@@ -57,7 +57,7 @@ export default function Testimonials() {
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6 }}
         >
-          <div className="badge">Testimonials</div>
+          <span className="badge">Testimonials</span>
           <h2>What Parents Say</h2>
           <p>Don&apos;t just take our word for it. Hear from our happy families!</p>
         </motion.div>

@@ -67,8 +67,14 @@
 }
 
 .testimonials-section .section-header {
-  h2 { color: #1e293b; } /* Dark slate */
-  p { color: #475569; }
+  .badge {
+    background: rgba(255, 255, 255, 0.12);
+    border-color: rgba(255, 255, 255, 0.25);
+    color: #d4c1ff;
+    backdrop-filter: blur(8px);
+  }
+  h2 { color: #ffe88a; } /* Make text bright against dark background */
+  p { color: #d4c1ff; }
 }
 
 .reviews-grid {

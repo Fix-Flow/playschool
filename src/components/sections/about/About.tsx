@@ -65,6 +65,8 @@ export default function About() {
         </motion.div>
 
       </div>
+
+      <CloudDivider position="bottom" fillColorVar="var(--bg-pale-green)" />
     </section>
   );
 }

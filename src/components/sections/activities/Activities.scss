@@ -3,6 +3,16 @@
   background: var(--bg-pale-blue);
   padding: 80px 0 120px;
 
+  .section-header {
+    margin-bottom: 60px;
+
+    .badge {
+      background: #dcfce7;
+      border-color: #bbf7d0;
+      color: #16a34a;
+    }
+  }
+
   @media (max-width: 1024px) {
     padding: 80px 0 90px;
   }
@@ -25,15 +35,25 @@
     grid-template-columns: repeat(3, 1fr);
     gap: 16px;
   }
+
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: 480px) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
 }
 
 .activity-card {
   border-radius: 20px;
-  padding: 14px 20px;
+  padding: 16px 12px;
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 16px;
+  justify-content: center;
+  gap: 12px;
   text-align: left;
   box-shadow: var(--soft-shadow);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -42,6 +62,13 @@
   &:hover {
     transform: translateY(-4px) scale(1.02);
     box-shadow: var(--shadow);
+  }
+
+  @media (max-width: 480px) {
+    flex-direction: column;
+    text-align: center;
+    padding: 12px 8px;
+    gap: 8px;
   }
 
   .icon-wrapper {
@@ -56,6 +83,12 @@
     font-size: 1.7rem;
     box-shadow: 0 6px 12px rgba(0,0,0,0.05);
     flex-shrink: 0;
+
+    @media (max-width: 480px) {
+      width: 40px;
+      height: 40px;
+      font-size: 1.3rem;
+    }
   }
 
   h3 {
@@ -64,14 +97,18 @@
     color: var(--ink);
     margin: 0;
     line-height: 1.2;
+
+    @media (max-width: 480px) {
+      font-size: 1rem;
+    }
   }
 
-  &.bg-pink { background: linear-gradient(135deg, var(--lavender), #ffb3d9); }
-  &.bg-purple { background: linear-gradient(135deg, var(--lavender), #d4c1ff); }
-  &.bg-blue { background: linear-gradient(135deg, var(--sky), #a3e6ff); }
-  &.bg-green { background: linear-gradient(135deg, #efffc6, #a1eaaf); }
-  &.bg-orange { background: linear-gradient(135deg, #ffe8cc, #ffc98a); }
-  &.bg-yellow { background: linear-gradient(135deg, #fff5d9, #ffe88a); }
+  &.bg-pink { background: linear-gradient(135deg, #fff0f0 0%, #ffffff 100%); }
+  &.bg-purple { background: linear-gradient(135deg, #f8f0ff 0%, #ffffff 100%); }
+  &.bg-blue { background: linear-gradient(135deg, #f0f9ff 0%, #ffffff 100%); }
+  &.bg-green { background: linear-gradient(135deg, #f4faeb 0%, #ffffff 100%); }
+  &.bg-orange { background: linear-gradient(135deg, #fff4e6 0%, #ffffff 100%); }
+  &.bg-yellow { background: linear-gradient(135deg, #fffbe6 0%, #ffffff 100%); }
 }
 
 /* ======================= ROUTINE ======================= */

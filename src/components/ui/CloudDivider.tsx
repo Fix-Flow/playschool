@@ -49,6 +49,8 @@ export function CloudDivider({
     ? "drop-shadow(0px 12px 24px rgba(9, 34, 58, 0.25))"
     : "drop-shadow(0px -12px 24px rgba(9, 34, 58, 0.25))";
 
+  const clipPathId = position === "top-inverted" ? "top-inverted-shadow-clip" : "standard-shadow-clip";
+
   return (
     <div className={`cloud-divider ${className}`} style={positioningStyles}>
       <svg 
@@ -62,23 +64,27 @@ export function CloudDivider({
         }}
         aria-hidden="true"
       >
-        {backgroundImage && (
-          <defs>
+        <defs>
+          {backgroundImage && (
             <pattern id="cloud-bg-pattern" patternUnits="userSpaceOnUse" width="1200" height="120">
               <image href={backgroundImage} x="0" y="0" width="1200" height="120" preserveAspectRatio="xMidYMid slice" />
             </pattern>
-          </defs>
-        )}
+          )}
+          {/* Clip path for top-inverted shadow: clips anything above y = 0 */}
+          <clipPath id="top-inverted-shadow-clip">
+            <rect x="-600" y="0" width="2400" height="400" />
+          </clipPath>
+          {/* Clip path for standard shadow: clips anything below y = 120 */}
+          <clipPath id="standard-shadow-clip">
+            <rect x="-600" y="-200" width="2400" height="320" />
+          </clipPath>
+        </defs>
         {/* 1. Filled path that casts the drop shadow, clipped to remove flat-edge shadows */}
         <path 
           d={pathD}
           fill="currentColor"
           filter={shadowFilter}
-          style={{
-            clipPath: position === "top-inverted"
-              ? "polygon(-100% 0%, 200% 0%, 200% 200%, -100% 200%)"
-              : "polygon(-100% -100%, 200% -100%, 200% 100%, -100% 100%)"
-          }}
+          clipPath={`url(#${clipPathId})`}
         />
         {/* 2. Opaque filled path (no filter, no clipping) that covers the shadow path and renders the smooth curves */}
         <path 
