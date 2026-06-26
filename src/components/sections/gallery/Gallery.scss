@@ -110,6 +110,9 @@
 .gallery-actions {
   text-align: center;
   margin-top: 30px;
+  margin-bottom: 80px;
+  position: relative;
+  z-index: 20;
 }
 
 .grid-layout:not(.is-expanded) .grid-item:nth-child(n+13) {
@@ -139,6 +142,10 @@
 @media (max-width: 1024px) {
   .gallery-section {
     padding: 80px 0 60px;
+  }
+
+  .gallery-actions {
+    margin-bottom: 60px;
   }
 
   .grid-layout {

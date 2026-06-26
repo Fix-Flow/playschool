@@ -68,9 +68,10 @@ export default function RootLayout({
         <Ambient />
         <Navbar />
 
-        {children}
-
-        <Footer />
+        <div className="flex-1 flex flex-col w-full overflow-x-hidden relative">
+          {children}
+          <Footer />
+        </div>
         <GlobalInteractions />
         <WhatsAppWidget />
       </body>

@@ -26,28 +26,7 @@ export default function Testimonials() {
   return (
     <section className="testimonials-section" id="testimonials" style={{ position: "relative" }}>
       <CloudDivider fillColorVar="#e0f2fe" />
-      {/* Daytime Sky Background */}
-      <div className="bg-daytime" aria-hidden="true">
-        {/* Sun */}
-        <motion.div 
-          className="day-sun"
-          animate={{ rotate: 360 }}
-          transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
-        >
-          ☀️
-        </motion.div>
 
-        {/* Parallax Clouds */}
-        <motion.div className="day-cloud cloud-1" animate={{ x: ['-10vw', '110vw'] }} transition={{ duration: 45, repeat: Infinity, ease: "linear" }}>☁️</motion.div>
-        <motion.div className="day-cloud cloud-2" animate={{ x: ['-10vw', '110vw'] }} transition={{ duration: 60, repeat: Infinity, ease: "linear" }}>☁️</motion.div>
-        <motion.div className="day-cloud cloud-3" animate={{ x: ['-10vw', '110vw'] }} transition={{ duration: 30, repeat: Infinity, ease: "linear" }}>☁️</motion.div>
-
-        {/* Hot Air Balloon (bobbing) */}
-        <motion.div className="day-balloon" animate={{ y: [-10, 10, -10] }} transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}>🎈</motion.div>
-
-        {/* Swaying Kite */}
-        <motion.div className="day-kite" animate={{ rotate: [-5, 5, -5] }} transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}>🪁</motion.div>
-      </div>
 
       <div className="testimonials-container">
         <motion.div 
@@ -70,11 +49,7 @@ export default function Testimonials() {
             initial={{ opacity: 0, y: 50, rotate: -3 }}
             whileInView={{ opacity: 1, y: 0, rotate: 0 }}
             viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 0.6, delay: i * 0.2, type: "spring", bounce: 0.3 }}
-          >
-              <div className="shrine-roof">
-                <div className="roof-scallop"></div>
-              </div>
+            transition={{ duration: 0.6, delay: i * 0.2, type: "spring", bounce: 0.3 }}>
               <div className="card-content">
                 <div className="quote-mark">&quot;</div>
                 <p className="review-text">{rev.text}</p>

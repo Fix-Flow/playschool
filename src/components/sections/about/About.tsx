@@ -66,7 +66,7 @@ export default function About() {
 
       </div>
 
-      <CloudDivider position="bottom" fillColorVar="var(--bg-pale-green)" />
+      <CloudDivider position="bottom" fillColorVar="var(--bg-pale-blue)" />
     </section>
   );
 }

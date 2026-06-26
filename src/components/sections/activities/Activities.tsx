@@ -50,7 +50,7 @@ export default function Activities() {
       </div>
       
       {/* Cloud divider pointing downwards into the next section */}
-      <CloudDivider position="bottom" fillColorVar="var(--bg-pale-blue)" />
+      <CloudDivider position="bottom" fillColorVar="var(--bg-pale-green)" />
     </section>
   );
 }

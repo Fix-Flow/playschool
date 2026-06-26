@@ -1,80 +1,31 @@
 .testimonials-section {
   padding: 120px 0;
-  background: #e0f2fe; /* Light sky blue */
+  background: linear-gradient(180deg, #e0f2fe 0%, var(--bg-cream) 50%, var(--bg-pale-red) 100%);
   position: relative;
   /* Removed overflow: hidden so CloudDivider can overlap the section above */
 }
 
-/* Background Daytime Elements */
-.bg-daytime {
-  position: absolute;
-  top: 0; left: 0; width: 100%; height: 100%;
-  pointer-events: none;
-  z-index: 0;
-  overflow: hidden; /* Moved here to prevent animations from overflowing */
 
-  .day-sun {
-    position: absolute;
-    top: 10%;
-    right: 15%;
-    font-size: 8rem;
-    filter: drop-shadow(0 0 20px rgba(253, 224, 71, 0.6));
-    z-index: 1;
-
-    @media (max-width: 1024px) {
-      font-size: 5rem;
-      top: 5%;
-      right: 5%;
-    }
-  }
-
-  .day-cloud {
-    position: absolute;
-    opacity: 0.8;
-    filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.05));
-    z-index: 2;
-  }
-  
-  .cloud-1 { top: 15%; left: -10%; font-size: 5rem; opacity: 0.2; }
-  .cloud-2 { top: 40%; left: -10%; font-size: 4.5rem; opacity: 0.4; }
-  .cloud-3 { bottom: 20%; left: -10%; font-size: 6rem; opacity: 0.6; }
-
-  .day-balloon {
-    position: absolute;
-    top: 20%;
-    right: 15%;
-    font-size: 4rem;
-    z-index: 2;
-    opacity: 0.85;
-    filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.1));
-  }
-
-  .day-kite {
-    position: absolute;
-    top: 10%;
-    left: 15%;
-    font-size: 3.5rem;
-    z-index: 3;
-    filter: drop-shadow(0 10px 10px rgba(0, 0, 0, 0.1));
-  }
-}
 
 .testimonials-container {
   position: relative;
   z-index: 20;
   width: min(1180px, calc(100% - 34px));
   margin: 0 auto;
+
+  @media (max-width: 992px) {
+    width: min(1180px, calc(100% - 40px)); /* Gives 20px padding on each side to prevent touching edges */
+  }
 }
 
 .testimonials-section .section-header {
   .badge {
-    background: rgba(255, 255, 255, 0.12);
-    border-color: rgba(255, 255, 255, 0.25);
-    color: #d4c1ff;
-    backdrop-filter: blur(8px);
+    background: var(--white);
+    border-color: #7dd3fc;
+    color: #0284c7;
   }
-  h2 { color: #ffe88a; } /* Make text bright against dark background */
-  p { color: #d4c1ff; }
+  h2 { color: var(--logo-navy); } 
+  p { color: rgba(9, 34, 58, 0.8); }
 }
 
 .reviews-grid {
@@ -88,13 +39,11 @@
   }
 }
 
-/* Cartoon Shrine Card */
+/* Playful Card Design */
 .review-card {
   position: relative;
-  border-radius: 20px;
-  padding: 0;
   transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-  margin-top: 30px; /* Leave room for roof */
+  margin-top: 20px;
 
   &:hover {
     transform: translateY(-8px) rotate(-1deg);
@@ -109,55 +58,39 @@
     }
   }
 
-  /* The actual content box with thick border */
+  /* The actual content box */
   .card-content {
-    background: var(--white);
     padding: 40px 30px;
-    border-radius: 24px;
-    border: 6px solid #1e293b; /* Dark slate stroke */
-    box-shadow: 8px 12px 0 rgba(30, 41, 59, 0.2); /* Softer daytime shadow */
+    border-radius: 28px;
+    border: 3px solid var(--logo-navy);
+    box-shadow: 6px 6px 0px rgba(9, 34, 58, 0.08); 
     position: relative;
     z-index: 2;
   }
 
-  /* The Shrine Roof */
-  .shrine-roof {
-    position: absolute;
-    top: -30px;
-    left: -10px;
-    right: -10px;
-    height: 50px;
-    border-radius: 30px;
-    border: 6px solid #1e293b;
-    z-index: 3;
-    display: flex;
-    justify-content: center;
-    overflow: hidden;
-
-    /* Scalloped tiles effect */
-    .roof-scallop {
-      width: 100%;
-      height: 100%;
-      background-image: radial-gradient(circle at 15px 0, transparent 15px, rgba(0,0,0,0.1) 16px, transparent 17px);
-      background-size: 30px 20px;
-      opacity: 0.5;
-    }
+  /* Color Variations */
+  &.style-0 {
+    .card-content { background: var(--bg-pale-red); }
+    .quote-mark { color: var(--logo-red); }
   }
-
-  /* Color Variations for Roofs */
-  &.style-0 .shrine-roof { background: var(--pink); box-shadow: 0 8px 0 #d1307b; }
-  &.style-1 .shrine-roof { background: var(--yellow); box-shadow: 0 8px 0 #ccaa00; }
-  &.style-2 .shrine-roof { background: var(--blue, #38bdf8); box-shadow: 0 8px 0 #0284c7; }
+  &.style-1 {
+    .card-content { background: var(--bg-cream); }
+    .quote-mark { color: var(--logo-yellow); }
+  }
+  &.style-2 {
+    .card-content { background: var(--bg-pale-green); }
+    .quote-mark { color: var(--logo-green); }
+  }
 
   .quote-mark {
     position: absolute;
-    top: 10px;
-    left: 20px;
+    top: 16px;
+    left: 24px;
     font-family: var(--font-baloo-2);
-    font-size: 5rem;
-    color: rgba(0,0,0,0.06);
+    font-size: 4.5rem;
     line-height: 1;
     z-index: 0;
+    opacity: 0.2;
   }
 
   .review-text {
@@ -173,14 +106,13 @@
   .author-info {
     position: relative;
     z-index: 1;
-    border-top: 4px dotted #e0e0e0;
-    padding-top: 16px;
+    margin-top: 20px;
 
     strong {
       display: block;
       font-family: var(--font-baloo-2);
       font-size: 1.3rem;
-      color: var(--purple);
+      color: var(--logo-navy);
     }
 
     span {
@@ -188,6 +120,42 @@
       font-size: 0.9rem;
       color: var(--muted);
       font-weight: 800;
+    }
+  }
+
+  @media (max-width: 576px) {
+    margin-top: 10px;
+    max-width: 350px;
+    margin-inline: auto;
+    width: 100%;
+    
+    .card-content {
+      padding: 24px 20px;
+      border-radius: 20px;
+      border-width: 2.5px;
+    }
+    
+    .review-text {
+      font-size: 0.95rem;
+      line-height: 1.45;
+      margin-bottom: 16px;
+    }
+    
+    .author-info {
+      margin-top: 12px;
+      
+      strong {
+        font-size: 1.05rem;
+      }
+      span {
+        font-size: 0.8rem;
+      }
+    }
+    
+    .quote-mark {
+      font-size: 3rem;
+      top: 8px;
+      left: 14px;
     }
   }
 }
@@ -295,65 +263,4 @@
 .update-card p {
   font-size: .92rem;
   margin-top: 4px;
-}
-
-.mini-update {
-  margin-top: 10px;
-}
-
-/* ======================= REVIEWS ======================= */
-
-.review-stage {
-  display: grid;
-  grid-template-columns: 60px minmax(0, 760px) 60px;
-  justify-content: center;
-  align-items: center;
-  gap: 16px;
-}
-
-.review-card {
-  min-height: 270px;
-  padding: 38px;
-  border-radius: 44px;
-  background: var(--white);
-  box-shadow: var(--shadow);
-  text-align: center;
-}
-
-.review-stars {
-  color: #f59e0b;
-  font-size: 1.35rem;
-  letter-spacing: 4px;
-}
-
-.review-card p {
-  font-family: var(--font-baloo-2), cursive;
-  color: var(--ink);
-  font-size: clamp(1.45rem, 3vw, 2.35rem);
-  line-height: 1.2;
-  margin: 18px 0;
-  transition: opacity .18s ease;
-}
-
-.review-card strong {
-  color: var(--purple);
-  transition: opacity .18s ease;
-}
-
-.review-btn {
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  background: var(--white);
-  box-shadow: var(--soft-shadow);
-  color: var(--purple);
-  font-size: 2.4rem;
-  font-weight: 1000;
-  transition: .24s ease;
-}
-
-.review-btn:hover {
-  background: var(--yellow);
-  transform: scale(1.1);
-}
-
+}

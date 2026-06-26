@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { MapPin, Phone, Mail, Clock, ChevronRight } from "lucide-react";
 import "./Footer.scss";
 
@@ -90,7 +90,7 @@ const AnimatedWaves = () => (
       height: "90px",
       zIndex: 10,
       pointerEvents: "none",
-      overflow: "hidden",
+      overflow: "visible",
       color: "#FDF2F8",
     }}
   >
@@ -102,8 +102,23 @@ const AnimatedWaves = () => (
         width: "100%",
         height: "100%",
         display: "block",
+        overflow: "visible",
       }}
     >
+      <defs>
+        {/* Clip path: covers the area of the SVG (x = 0 to 1440) and above it (y = -100 to 120), clipping anything below or outside */}
+        <clipPath id="footer-wave-clip">
+          <rect x="0" y="-100" width="1440" height="220" />
+        </clipPath>
+      </defs>
+      {/* 1. Shadow path (clipped below y = 120 and at the sides so the straight edges don't cast shadows) */}
+      <path
+        d="M0 70C120 30 245 22 370 52C510 86 620 108 760 74C900 40 1015 18 1150 42C1275 64 1360 88 1440 56V120H0V70Z"
+        fill="currentColor"
+        filter="drop-shadow(0px -10px 12px rgba(9, 34, 58, 0.12))"
+        clipPath="url(#footer-wave-clip)"
+      />
+      {/* 2. Opaque path on top (unclipped, no filter) to draw the clean wave shape */}
       <path
         d="M0 70C120 30 245 22 370 52C510 86 620 108 760 74C900 40 1015 18 1150 42C1275 64 1360 88 1440 56V120H0V70Z"
         fill="currentColor"
@@ -182,7 +197,20 @@ const WavyLineSeparator = () => (
 );
 
 export default function Footer() {
+  const [isMapOpen, setIsMapOpen] = React.useState(false);
+  const [isMapLoading, setIsMapLoading] = React.useState(true);
   const currentYear = new Date().getFullYear();
+
+  React.useEffect(() => {
+    if (isMapOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, [isMapOpen]);
 
   return (
     <footer
@@ -190,7 +218,7 @@ export default function Footer() {
       id="footer"
       role="contentinfo"
       style={{
-        backgroundColor: "#FDF2F8",
+        background: "linear-gradient(180deg, #FDF2F8 0%, #FCE7F3 100%)",
         position: "relative",
         paddingTop: "40px",
         overflow: "visible",
@@ -198,7 +226,6 @@ export default function Footer() {
     >
       {/* ── Layer 1 & 2: Organic Wave Border & Ambient Animations ── */}
       <AnimatedWaves />
-      <AmbientBubbles />
       <CornerIllustration />
 
       {/* ── Layer 3: Main Content ── */}
@@ -335,9 +362,43 @@ export default function Footer() {
                   fontSize: "14px",
                 }}
               >
-                <li style={{ display: "flex", gap: "16px", alignItems: "flex-start" }}>
-                  <MapPin size={22} color="#ec4899" style={{ flexShrink: 0 }} />
-                  <span>123 Learning Lane, Education District, City&nbsp;-&nbsp;500001</span>
+                <li style={{ display: "flex", gap: "12px", alignItems: "flex-start", flexDirection: "column" }}>
+                  <div style={{ display: "flex", gap: "16px", alignItems: "flex-start" }}>
+                    <MapPin size={22} color="#ec4899" style={{ flexShrink: 0, marginTop: "2px" }} />
+                    <span>Teachers Colony Rd, Housing Board Colony, Siddipet, Telangana&nbsp;-&nbsp;502103</span>
+                  </div>
+                  <button
+                    onClick={() => {
+                      setIsMapLoading(true);
+                      setIsMapOpen(true);
+                    }}
+                    style={{
+                      marginLeft: "38px",
+                      background: "rgba(236, 72, 153, 0.1)",
+                      color: "#ec4899",
+                      border: "2px solid rgba(236, 72, 153, 0.2)",
+                      padding: "6px 14px",
+                      borderRadius: "12px",
+                      fontSize: "12px",
+                      fontWeight: "bold",
+                      cursor: "pointer",
+                      display: "inline-flex",
+                      alignItems: "center",
+                      gap: "6px",
+                      transition: "all 0.2s ease",
+                      fontFamily: "var(--font-nunito)",
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.background = "#ec4899";
+                      e.currentTarget.style.color = "white";
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.background = "rgba(236, 72, 153, 0.1)";
+                      e.currentTarget.style.color = "#ec4899";
+                    }}
+                  >
+                    📍 View Map
+                  </button>
                 </li>
 
                 <li style={{ display: "flex", gap: "16px", alignItems: "center" }}>
@@ -400,6 +461,141 @@ export default function Footer() {
           </div>
         </div>
       </div>
+
+      {/* Map Modal */}
+      <AnimatePresence>
+        {isMapOpen && (
+          <div
+            onClick={() => setIsMapOpen(false)}
+            style={{
+              position: "fixed",
+              inset: 0,
+              backgroundColor: "rgba(0, 0, 0, 0.6)",
+              backdropFilter: "blur(4px)",
+              zIndex: 99999,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              padding: "20px",
+            }}
+          >
+            <motion.div
+              onClick={(e) => e.stopPropagation()}
+              initial={{ opacity: 0, scale: 0.9, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.9, y: 20 }}
+              transition={{ duration: 0.3, type: "spring", bounce: 0.3 }}
+              style={{
+                position: "relative",
+                width: "min(800px, 100%)",
+                backgroundColor: "white",
+                borderRadius: "28px",
+                padding: "16px",
+                boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)",
+                border: "3px solid var(--logo-navy)",
+                display: "flex",
+                flexDirection: "column",
+                gap: "12px",
+              }}
+            >
+              {/* Header */}
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "4px 8px" }}>
+                <h3 style={{ fontFamily: "var(--font-baloo-2)", fontSize: "1.5rem", color: "var(--logo-navy)", margin: 0 }}>
+                  Tiny Learners Play School Map
+                </h3>
+                {/* Close Button ('X') */}
+                <button
+                  onClick={() => setIsMapOpen(false)}
+                  style={{
+                    position: "absolute",
+                    top: "-20px",
+                    right: "-20px",
+                    width: "40px",
+                    height: "40px",
+                    borderRadius: "50%",
+                    backgroundColor: "var(--logo-navy)",
+                    color: "white",
+                    border: "3px solid white",
+                    fontSize: "20px",
+                    fontWeight: "bold",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    cursor: "pointer",
+                    boxShadow: "0 4px 12px rgba(0,0,0,0.15)",
+                    transition: "all 0.2s ease",
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = "scale(1.1)";
+                    e.currentTarget.style.backgroundColor = "var(--logo-red)";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = "scale(1)";
+                    e.currentTarget.style.backgroundColor = "var(--logo-navy)";
+                  }}
+                >
+                  &times;
+                </button>
+              </div>
+
+              {/* Map Frame */}
+              <div style={{ position: "relative", width: "100%", height: "clamp(300px, 50vh, 450px)", borderRadius: "18px", overflow: "hidden", border: "2px solid #e2e8f0" }}>
+                {isMapLoading && (
+                  <div
+                    style={{
+                      position: "absolute",
+                      inset: 0,
+                      backgroundColor: "white",
+                      display: "flex",
+                      flexDirection: "column",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      zIndex: 5,
+                    }}
+                  >
+                    <video
+                      src="/Boy going to school.webm"
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                      style={{
+                        width: "120px",
+                        height: "auto",
+                        marginBottom: "12px",
+                      }}
+                    />
+                    <div style={{
+                      fontFamily: "var(--font-baloo-2)",
+                      fontSize: "1.2rem",
+                      color: "var(--logo-navy)",
+                      animation: "pulse 1.5s infinite ease-in-out",
+                    }}>
+                      Loading Map...
+                    </div>
+                  </div>
+                )}
+                <iframe
+                  title="Tiny Learners Play School Location"
+                  src="https://maps.google.com/maps?q=Tiny%20learners%20play%20school%2C%20Teachers%20Colony%20Rd%2C%20Housing%20Board%20Colony%2C%20Siddipet%2C%20Telangana%20502103&t=&z=16&ie=UTF8&iwloc=&output=embed"
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  onLoad={() => setIsMapLoading(false)}
+                ></iframe>
+              </div>
+              
+              {/* Address Details */}
+              <p style={{ fontSize: "14px", color: "var(--muted)", textAlign: "center", fontWeight: "600", margin: "4px 0" }}>
+                📍 Teachers Colony Rd, Housing Board Colony, Siddipet, Telangana - 502103
+              </p>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
     </footer>
   );
 }

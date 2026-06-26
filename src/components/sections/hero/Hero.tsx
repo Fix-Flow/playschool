@@ -42,7 +42,7 @@ export default function Hero() {
             
             <div className="hero-badge">
               <span className="dot" />
-              Admissions Open for 2026-27
+              Admissions Open
             </div>
 
             <h1>
