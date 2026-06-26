@@ -25,26 +25,28 @@ const reviews = [
 export default function Testimonials() {
   return (
     <section className="testimonials-section" id="testimonials" style={{ position: "relative" }}>
-      <CloudDivider fillColorVar="#1A2942" />
-      {/* Cartoon Space Background */}
-      <div className="bg-stars">
-        <div className="moon">
-          <div className="rocket"></div>
-        </div>
-        <div className="astronaut"></div>
-        
-        <div className="star s1">⭐</div>
-        <div className="star s2">✨</div>
-        <div className="star s3">⭐</div>
-        <div className="star s4">✨</div>
-        <div className="star s5">⭐</div>
-        <div className="star s6">✨</div>
-        <div className="star s7">✨</div>
-        <div className="star s8">⭐</div>
-        <div className="star s9">✨</div>
-        <div className="star s10">✨</div>
-        <div className="star s11">⭐</div>
-        <div className="star s12">✨</div>
+      <CloudDivider fillColorVar="#e0f2fe" />
+      {/* Daytime Sky Background */}
+      <div className="bg-daytime" aria-hidden="true">
+        {/* Sun */}
+        <motion.div 
+          className="day-sun"
+          animate={{ rotate: 360 }}
+          transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
+        >
+          ☀️
+        </motion.div>
+
+        {/* Parallax Clouds */}
+        <motion.div className="day-cloud cloud-1" animate={{ x: ['-10vw', '110vw'] }} transition={{ duration: 45, repeat: Infinity, ease: "linear" }}>☁️</motion.div>
+        <motion.div className="day-cloud cloud-2" animate={{ x: ['-10vw', '110vw'] }} transition={{ duration: 60, repeat: Infinity, ease: "linear" }}>☁️</motion.div>
+        <motion.div className="day-cloud cloud-3" animate={{ x: ['-10vw', '110vw'] }} transition={{ duration: 30, repeat: Infinity, ease: "linear" }}>☁️</motion.div>
+
+        {/* Hot Air Balloon (bobbing) */}
+        <motion.div className="day-balloon" animate={{ y: [-10, 10, -10] }} transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}>🎈</motion.div>
+
+        {/* Swaying Kite */}
+        <motion.div className="day-kite" animate={{ rotate: [-5, 5, -5] }} transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}>🪁</motion.div>
       </div>
 
       <div className="testimonials-container">
@@ -57,7 +59,7 @@ export default function Testimonials() {
         >
           <div className="badge">Testimonials</div>
           <h2>What Parents Say</h2>
-          <p>Don't just take our word for it. Hear from our happy families!</p>
+          <p>Don&apos;t just take our word for it. Hear from our happy families!</p>
         </motion.div>
 
         <div className="reviews-grid">
@@ -74,7 +76,7 @@ export default function Testimonials() {
                 <div className="roof-scallop"></div>
               </div>
               <div className="card-content">
-                <div className="quote-mark">"</div>
+                <div className="quote-mark">&quot;</div>
                 <p className="review-text">{rev.text}</p>
                 <div className="author-info">
                   <strong>{rev.author}</strong>

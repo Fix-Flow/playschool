@@ -182,11 +182,11 @@ export default function Navbar() {
               );
             })}
             <Link
-              href="#contact"
-              className={`nav-item-admissions ${activeSection === "contact" ? "active" : ""}`}
+              href="#footer"
+              className={`nav-item-admissions ${activeSection === "footer" ? "active" : ""}`}
               onClick={() => {
                 isScrollingRef.current = true;
-                setActiveSection("contact");
+                setActiveSection("footer");
                 setNavOpen(false);
                 setTimeout(() => (isScrollingRef.current = false), 1000);
               }}

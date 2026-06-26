@@ -4,7 +4,7 @@ import Programs from "@/components/sections/programs/Programs";
 import Activities from "@/components/sections/activities/Activities";
 import Gallery from "@/components/sections/gallery/Gallery";
 import Testimonials from "@/components/sections/testimonials/Testimonials";
-import Contact from "@/components/sections/contact/Contact";
+
 
 export default function Home() {
   return (
@@ -18,7 +18,7 @@ export default function Home() {
         <Testimonials />
       </main>
 
-      <Contact />
+
     </>
   );
 }

@@ -59,7 +59,7 @@ export default function About() {
             <div className="value-item">
               <span className="icon">🧠</span>
               <h4>Teaching Philosophy</h4>
-              <p>Child-centric, activity-based learning that honors every child's unique pace.</p>
+              <p>Child-centric, activity-based learning that honors every child&apos;s unique pace.</p>
             </div>
           </div>
         </motion.div>

@@ -55,7 +55,7 @@ export default function Programs() {
       >
         <div className="badge">Our Curriculum</div>
         <h2>Programs We Offer</h2>
-        <p>Tailored learning experiences for every stage of your child's early development.</p>
+        <p>Tailored learning experiences for every stage of your child&apos;s early development.</p>
       </motion.div>
 
       <div className="programs-grid">

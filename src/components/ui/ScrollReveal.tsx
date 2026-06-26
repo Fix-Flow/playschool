@@ -1,5 +1,5 @@
+"use client";
 import "./ScrollReveal.scss";
-'use client';
 
 import { useRef, ReactNode } from 'react';
 import { motion, useInView } from 'framer-motion';

@@ -7,6 +7,7 @@ import Ambient from "@/components/ui/Ambient";
 import Navbar from "@/components/layout/Navbar";
 import GlobalInteractions from "@/components/layout/GlobalInteractions";
 import WhatsAppWidget from "@/components/layout/WhatsAppWidget";
+import Footer from "@/components/layout/Footer";
 const baloo2 = Baloo_2({
   variable: "--font-baloo-2",
   subsets: ["latin"],
@@ -69,6 +70,7 @@ export default function RootLayout({
 
         {children}
 
+        <Footer />
         <GlobalInteractions />
         <WhatsAppWidget />
       </body>
