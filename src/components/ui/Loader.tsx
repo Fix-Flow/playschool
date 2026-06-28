@@ -7,13 +7,15 @@ export default function Loader() {
   const [progress, setProgress] = useState(0);
   const [hidden, setHidden] = useState(false);
   const [removed, setRemoved] = useState(false);
+  const [showContent, setShowContent] = useState(false);
 
   useEffect(() => {
     document.body.classList.add("locked");
 
     let currentProgress = 0;
     const timer = setInterval(() => {
-      currentProgress += Math.floor(Math.random() * 12) + 9;
+      // Increments by 4-9% each step to take ~1.8 seconds to load
+      currentProgress += Math.floor(Math.random() * 6) + 4;
       if (currentProgress >= 100) {
         currentProgress = 100;
         clearInterval(timer);
@@ -21,13 +23,21 @@ export default function Loader() {
         setTimeout(() => {
           setHidden(true);
           document.body.classList.remove("locked");
-          setTimeout(() => setRemoved(true), 500); // Wait for transition
-        }, 250); // Reduced pause after hitting 100%
+          setTimeout(() => setRemoved(true), 600); // Wait for transition
+        }, 250); // Pause at 100%
       }
       setProgress(currentProgress);
-    }, 90); // Reduced interval for faster loading
+    }, 90); // 90ms ticks
 
-    return () => clearInterval(timer);
+    // Wait 300ms for browser to start rendering videos/images, then fade them in together
+    const showTimer = setTimeout(() => {
+      setShowContent(true);
+    }, 300);
+
+    return () => {
+      clearInterval(timer);
+      clearTimeout(showTimer);
+    };
   }, []);
 
   if (removed) return null;
@@ -45,61 +55,74 @@ export default function Loader() {
         alignItems: "center"
       }}
     >
-      <div className="loader-container">        
-        {/* Main Tree with Animals (Foreground) */}
-        <img 
-          src="/cartoon_trees_with_animals.png" 
-          alt="Main Tree" 
-          style={{ 
-            position: "absolute", 
-            bottom: "40px", 
-            left: "50%",
-            transform: "translateX(-50%)",
-            width: "50%", 
-            height: "auto",
-            objectFit: "contain",
-            zIndex: 2
-          }} 
-        />
+      {/* Visual Sync Wrapper to fade tree, characters, and text at the exact same millisecond */}
+      <div
+        style={{
+          opacity: showContent ? 1 : 0,
+          transition: "opacity 0.4s ease-out",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+          pointerEvents: showContent ? "auto" : "none"
+        }}
+      >
+        <div className="loader-container">        
+          {/* Main Tree with Animals (Foreground) */}
+          <img 
+            src="/cartoon_trees_with_animals.webp" 
+            alt="Main Tree" 
+            style={{ 
+              position: "absolute", 
+              bottom: "40px", 
+              left: "50%",
+              transform: "translateX(-50%)",
+              width: "50%", 
+              height: "auto",
+              objectFit: "contain",
+              zIndex: 2
+            }} 
+          />
+          
+          {/* The Boy Video (Walking left side) */}
+          <video 
+            src="/Boy going to school.webm" 
+            autoPlay 
+            muted={true} 
+            loop 
+            playsInline 
+            style={{ 
+              position: "absolute",
+              bottom: "30px", /* Sits him perfectly on the left slope of the grass */
+              left: "50px",
+              width: "170px", 
+              height: "auto",
+              zIndex: 10
+            }}
+          />
+          
+          {/* The Kid Cycling Video (Riding right side) */}
+          <video 
+            src="/kid_cycling.webm" 
+            autoPlay 
+            muted={true} 
+            loop 
+            playsInline 
+            style={{ 
+              position: "absolute",
+              bottom: "30px", /* Grounds his bike wheels on the grass */
+              right: "-30px",
+              width: "290px", 
+              height: "auto",
+              zIndex: 10
+            }}
+          />
+        </div>
         
-        {/* The Boy Video (Walking left side) */}
-        <video 
-          src="/Boy going to school.webm" 
-          autoPlay 
-          muted={true} 
-          loop 
-          playsInline 
-          style={{ 
-            position: "absolute",
-            bottom: "30px", /* Sits him perfectly on the left slope of the grass */
-            left: "50px",
-            width: "170px", 
-            height: "auto",
-            zIndex: 10
-          }}
-        />
-        
-        {/* The Kid Cycling Video (Riding right side) */}
-        <video 
-          src="/kid_cycling.webm" 
-          autoPlay 
-          muted={true} 
-          loop 
-          playsInline 
-          style={{ 
-            position: "absolute",
-            bottom: "30px", /* Grounds his bike wheels on the grass */
-            right: "-30px",
-            width: "290px", 
-            height: "auto",
-            zIndex: 10
-          }}
-        />
-      </div>
-      
-      <div className="loader-copy" style={{ marginTop: "24px", textAlign: "center", zIndex: 3 }}>
-        <strong>Tiny Learners</strong>
-        <p>Getting ready for school...</p>
+        <div className="loader-copy" style={{ marginTop: "24px", textAlign: "center", zIndex: 3 }}>
+          <strong>Tiny Learners</strong>
+          <p>Getting ready for school...</p>
+        </div>
       </div>
     </div>
   );

@@ -8,35 +8,35 @@ import "./Programs.scss";
 const programData = [
   {
     title: "Playgroup",
-    age: "1.5 - 2.5 Years",
+    age: "1.5 - 2.5 Yrs",
     time: "9:00 AM - 12:00 PM",
     color: "pink",
     icon: "🎨",
-    desc: "A gentle introduction to a structured environment focusing on sensory play and social skills."
+    desc: "Sensory play, social skills, and group activities."
   },
   {
     title: "Nursery",
-    age: "2.5 - 3.5 Years",
+    age: "2.5 - 3.5 Yrs",
     time: "9:00 AM - 12:30 PM",
     color: "yellow",
     icon: "🔤",
-    desc: "Building foundations in language, math concepts, and independent learning through exploration."
+    desc: "Foundations in language, early math, and play."
   },
   {
     title: "Pre-KG",
-    age: "3.5 - 4.5 Years",
+    age: "3.5 - 4.5 Yrs",
     time: "9:00 AM - 1:00 PM",
     color: "blue",
     icon: "🚀",
-    desc: "Advanced cognitive development, reading readiness, and problem-solving activities."
+    desc: "Reading readiness and cognitive development."
   },
   {
     title: "Daycare",
-    age: "1.5 - 8.0 Years",
+    age: "1.5 - 8 Yrs",
     time: "8:00 AM - 6:30 PM",
     color: "green",
     icon: "🏡",
-    desc: "A safe, nurturing extended-care program with meals, rest, and engaging after-school activities."
+    desc: "Safe, nurturing care with engaging activities."
   }
 ];
 

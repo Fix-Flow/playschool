@@ -1,11 +1,18 @@
 "use client";
-
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { FloatingShape } from "@/components/ui/FloatingShapes";
 import "./Hero.scss";
 
-const HandDrawnSun = () => (
-  <svg className="hero-graphic hero-graphic--sun" viewBox="0 0 100 100" aria-hidden="true">
+const HandDrawnSun = ({ startAnim }: { startAnim: boolean }) => (
+  <motion.svg 
+    className="hero-graphic hero-graphic--sun" 
+    viewBox="0 0 100 100" 
+    aria-hidden="true"
+    initial={{ x: -200, rotate: -180, opacity: 0 }}
+    animate={startAnim ? { x: 0, rotate: 0, opacity: 1 } : { x: -200, rotate: -180, opacity: 0 }}
+    transition={{ duration: 1.5, type: "spring", bounce: 0.3 }}
+  >
     <g>
       <path d="M50,25 C65,22 75,35 75,50 C75,65 65,78 50,75 C35,78 25,65 25,50 C25,35 35,22 50,25 Z" fill="none" stroke="var(--logo-yellow)" strokeWidth="3" />
       {/* Rays */}
@@ -18,50 +25,107 @@ const HandDrawnSun = () => (
       <line x1="25" y1="75" x2="18" y2="82" stroke="var(--logo-yellow)" strokeWidth="3" strokeLinecap="round" />
       <line x1="75" y1="25" x2="82" y2="18" stroke="var(--logo-yellow)" strokeWidth="3" strokeLinecap="round" />
     </g>
-  </svg>
+  </motion.svg>
 );
 
-
-
 export default function Hero() {
+  const [startAnim, setStartAnim] = useState(false);
+
+  useEffect(() => {
+    // Check if loader is unmounted from the DOM
+    const checkLoader = setInterval(() => {
+      if (!document.getElementById("loader")) {
+        setStartAnim(true);
+        clearInterval(checkLoader);
+      }
+    }, 100);
+    return () => clearInterval(checkLoader);
+  }, []);
+
   return (
     <section className="hero-split" id="home">
-
-
       <div className="hero-split__inner">
         {/* TEXT PANEL */}
         <div className="hero-split__text-panel">
           <div className="hero-split__text-content">
-            <HandDrawnSun />
+            <HandDrawnSun startAnim={startAnim} />
             {/* Playful scattered shapes overlapping the text */}
             {/* <FloatingShape type="cloud" colorVar="#7B93A4" size={140} top="-100px" right="-15%" duration={14} delay={1} zIndex={10} />
             <FloatingShape type="cloud" colorVar="#7B93A4" size={80} top="-60px" right="-40%" duration={18} delay={3} zIndex={10} />
             {/* <FloatingShape type="cloud" colorVar="#7B93A4" size={60} top="-20px" right="-25%" duration={12} delay={2} zIndex={10} />
              */}
-            <FloatingShape type="pencil" colorVar="#4EA8DE" size={65} bottom="-1%" right="20%" zIndex={10} isStatic={true} className="hero-pencil" />
+
             
-            <div className="hero-badge">
+            <motion.div 
+              className="hero-badge"
+              initial={{ scale: 0, opacity: 0 }}
+              animate={startAnim ? { scale: 1, opacity: 1 } : { scale: 0, opacity: 0 }}
+              transition={{ duration: 0.5, delay: 0.2, type: "spring", stiffness: 200, damping: 15 }}
+            >
               <span className="dot" />
               Admissions Open
-            </div>
+            </motion.div>
 
-            <h1>
-              Where Little Minds
-              <br />
-              <em>Build Big Dreams</em>
+            <h1 style={{ display: "flex", flexDirection: "column" }}>
+              <span style={{ display: "block" }}>
+                {"Where Little Minds".split("").map((char, i) => (
+                  <motion.span
+                    key={i}
+                    className="hero-letter"
+                    initial={{ opacity: 0, scale: 1.25 }}
+                    animate={startAnim ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 1.25 }}
+                    transition={{
+                      duration: 0.8,
+                      ease: [0.16, 1, 0.3, 1],
+                      delay: 0.35 + i * 0.04
+                    }}
+                    style={{ display: char === " " ? "inline" : "inline-block" }}
+                  >
+                    {char === " " ? "\u00A0" : char}
+                  </motion.span>
+                ))}
+              </span>
+              <em>
+                {"Build Big Dreams".split("").map((char, i) => (
+                  <motion.span
+                    key={i}
+                    className="hero-gradient-letter"
+                    initial={{ opacity: 0, scale: 1.25 }}
+                    animate={startAnim ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 1.25 }}
+                    transition={{
+                      duration: 0.8,
+                      ease: [0.16, 1, 0.3, 1],
+                      delay: 0.35 + i * 0.04
+                    }}
+                    style={{ display: char === " " ? "inline" : "inline-block" }}
+                  >
+                    {char === " " ? "\u00A0" : char}
+                  </motion.span>
+                ))}
+              </em>
             </h1>
 
-            <p>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={startAnim ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+              transition={{ duration: 0.8, delay: 1.2, ease: "easeOut" }}
+            >
               A warm, joyful space for children aged 1.5 to 5.5 years to play,
               explore, and grow — one giggle at a time.
-            </p>
+            </motion.p>
 
-            <div className="hero-actions" style={{ position: "relative" }}>
+            <motion.div 
+              className="hero-actions" 
+              style={{ position: "relative" }}
+              initial={{ opacity: 0, x: -30 }}
+              animate={startAnim ? { opacity: 1, x: 0 } : { opacity: 0, x: -30 }}
+              transition={{ duration: 0.8, delay: 1.5, ease: "easeOut" }}
+            >
               <a href="#admissions" className="bouncy-btn btn-red">
                 Book a Visit
                 <span aria-hidden="true">🎈</span>
               </a>
-            </div>
+            </motion.div>
           </div>
 
         </div>
@@ -76,7 +140,7 @@ export default function Hero() {
             <div
               className="hero-split__slide is-active"
               style={{
-                backgroundImage: `url('/hero-carousel-3.png')`,
+                backgroundImage: `url('/hero-carousel-3.webp')`,
               }}
               role="img"
               aria-label="Tiny Learners classroom photo"

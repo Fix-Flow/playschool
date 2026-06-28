@@ -14,14 +14,14 @@ export default function About() {
         
         <motion.div 
           className="about-visual"
-          initial={{ opacity: 0, x: -50 }}
-          whileInView={{ opacity: 1, x: 0 }}
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.7, type: "spring", bounce: 0.2 }}
+          transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
         >
           <div className="founder-card">
             <div className="photo-wrapper">
-              <img src="/principal.jpg" alt="Principal and student" className="founder-photo" />
+              <img src="/principal.webp" alt="Principal and student" className="founder-photo" />
             </div>
             <div className="founder-info">
               <h3>Jane Doe</h3>
@@ -35,10 +35,10 @@ export default function About() {
 
         <motion.div 
           className="about-content"
-          initial={{ opacity: 0, x: 50 }}
-          whileInView={{ opacity: 1, x: 0 }}
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.7, delay: 0.1, type: "spring", bounce: 0.2 }}
+          transition={{ duration: 0.6, delay: 0.15, ease: [0.25, 0.46, 0.45, 0.94] }}
         >
           <h2>Our Story</h2>
           <p className="lead">

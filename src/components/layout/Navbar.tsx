@@ -1,16 +1,17 @@
 "use client";
 
 import { useState, useEffect, useRef, useCallback } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import "./navbar.scss";
 
 const NAV_ITEMS = [
-  { id: "about", label: "Story", className: "nav-item-worlds" },
-  { id: "programs", label: "Worlds", className: "nav-item-campus" },
-  { id: "activities", label: "Routine", className: "nav-item-routine" },
-  { id: "gallery", label: "Campus", className: "nav-item-parents" },
-  { id: "testimonials", label: "Parents", className: "nav-item-testimonials" },
+  { id: "home", label: "Home", className: "nav-item-home" },
+  { id: "about", label: "About", className: "nav-item-worlds" },
+  { id: "programs", label: "Programs", className: "nav-item-campus" },
+  { id: "activities", label: "Activities", className: "nav-item-routine" },
+  { id: "gallery", label: "Gallery", className: "nav-item-parents" },
+  { id: "testimonials", label: "Voices", className: "nav-item-testimonials" },
 ] as const;
 
 export default function Navbar() {
@@ -20,6 +21,7 @@ export default function Navbar() {
   const [catLeft, setCatLeft] = useState<number | null>(null);
   const [catTop, setCatTop] = useState<number | null>(null);
   const [catRightEdge, setCatRightEdge] = useState<number | null>(null);
+
   const isScrollingRef = useRef(false);
   const lastScrollY = useRef(0);
   const navLinksRef = useRef<HTMLElement>(null);
@@ -109,7 +111,7 @@ export default function Navbar() {
       <div className="header-inner">
         <div className="logo-wrap">
           <Link className="brand" href="#home" aria-label="Tiny Learners home">
-            <img src="/logo.png" alt="Tiny Learners Play School" className="brand-logo-img" />
+            <img src="/logo.webp" alt="Tiny Learners Play School" className="brand-logo-img" />
           </Link>
         </div>
 
@@ -147,7 +149,6 @@ export default function Navbar() {
           </button>
 
           <nav className={`nav-links ${navOpen ? "open" : ""}`} id="navLinks" ref={navLinksRef}>
-            {/* Single hero mascot — face peeks over the top, tail dangles below, both glide to the active link */}
             <div
               className={`nav-cat-face ${isCatVisible ? "is-visible" : ""}`}
               style={catLeft !== null ? { left: `${catLeft}px` } : undefined}

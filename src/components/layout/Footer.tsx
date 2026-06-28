@@ -5,14 +5,14 @@ import { motion, AnimatePresence } from "framer-motion";
 import { MapPin, Phone, Mail, Clock, ChevronRight } from "lucide-react";
 import "./Footer.scss";
 
-/* ─── Data ─── */
 const NAV_LINKS = [
-  { label: "Our Story", href: "#about" },
-  { label: "Programs", href: "#programs" },
-  { label: "Activities", href: "#activities" },
-  { label: "Gallery", href: "#gallery" },
-  { label: "Testimonials", href: "#testimonials" },
-  { label: "Admissions", href: "#contact" },
+  { href: "#home", label: "Home" },
+  { href: "#about", label: "About" },
+  { href: "#programs", label: "Programs" },
+  { href: "#activities", label: "Activities" },
+  { href: "#gallery", label: "Gallery" },
+  { href: "#testimonials", label: "Voices" },
+  { href: "#contact", label: "Admissions" },
 ];
 
 /* ─── Ambient Particles: Floating Sandbox Bubbles ─── */
@@ -127,43 +127,7 @@ const AnimatedWaves = () => (
   </div>
 );
 
-/* ─── Animated Corner Illustration (Breathing Blocks) ─── */
-const CornerIllustration = () => (
-  <div
-    className="rte-corner-illustration"
-    aria-hidden="true"
-    style={{
-      position: "absolute",
-      bottom: "48px",
-      right: "48px",
-      zIndex: 0,
-      opacity: 0.6,
-    }}
-  >
-    <svg
-      width="90"
-      height="90"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="#cbd5e1"
-      strokeWidth="1.5"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <motion.path
-        d="M12 2L2 7l10 5 10-5-10-5z"
-        animate={{ y: [0, -8, 0] }}
-        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-      />
-      <motion.path
-        d="M2 12l10 5 10-5"
-        animate={{ y: [0, -4, 0] }}
-        transition={{ duration: 4, delay: 0.2, repeat: Infinity, ease: "easeInOut" }}
-      />
-      <path d="M2 17l10 5 10-5" />
-    </svg>
-  </div>
-);
+
 
 /* ─── Animated Wavy Line Separator ─── */
 const WavyLineSeparator = () => (
@@ -226,7 +190,6 @@ export default function Footer() {
     >
       {/* ── Layer 1 & 2: Organic Wave Border & Ambient Animations ── */}
       <AnimatedWaves />
-      <CornerIllustration />
 
       {/* ── Layer 3: Main Content ── */}
       <div className="rte-inner" style={{ position: "relative", zIndex: 10 }}>

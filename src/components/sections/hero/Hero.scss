@@ -400,16 +400,6 @@
     }
   }
 
-  .hero-pencil {
-    width: 45px !important;
-    height: 45px !important;
-    right: 10% !important;
-    bottom: 5% !important;
-
-    @media (max-width: 480px) {
-      display: none !important;
-    }
-  }
 }
 
 @media (max-width: 480px) {
