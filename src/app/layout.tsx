@@ -6,8 +6,9 @@ import CustomCursor from "@/components/ui/CustomCursor";
 import Ambient from "@/components/ui/Ambient";
 import Navbar from "@/components/layout/Navbar";
 import GlobalInteractions from "@/components/layout/GlobalInteractions";
-import WhatsAppWidget from "@/components/layout/WhatsAppWidget";
 import Footer from "@/components/layout/Footer";
+import WhatsAppButton from "@/components/ui/WhatsAppButton";
+
 const baloo2 = Baloo_2({
   variable: "--font-baloo-2",
   subsets: ["latin"],
@@ -73,7 +74,7 @@ export default function RootLayout({
           <Footer />
         </div>
         <GlobalInteractions />
-        <WhatsAppWidget />
+        <WhatsAppButton />
       </body>
     </html>
   );

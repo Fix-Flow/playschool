@@ -24,7 +24,7 @@ export default function About() {
               <img src="/principal.webp" alt="Principal and student" className="founder-photo" />
             </div>
             <div className="founder-info">
-              <h3>Jane Doe</h3>
+              <h3>Bhavani</h3>
               <p>Founder & Principal</p>
             </div>
           </div>

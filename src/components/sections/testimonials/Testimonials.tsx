@@ -6,19 +6,19 @@ import "./Testimonials.scss";
 
 const reviews = [
   {
-    text: "My daughter loves coming to school every day! The teachers are so caring and the activities are amazing.",
-    author: "Priya Sharma",
-    role: "Parent of Nursery Student"
+    text: "A journey of a thousand miles begins with a single step and this is the best school to encourage kids",
+    author: "Malreddy Vijitha",
+    role: "Parent"
   },
   {
-    text: "We noticed a huge improvement in our son's social skills and confidence within just two months.",
-    author: "Rahul Verma",
-    role: "Parent of Pre-KG Student"
+    text: "The school is good and the education is very good. This is the best school for your child. Best Choice Nursery School👍",
+    author: "Vishnuvardhan Reddy",
+    role: "Parent"
   },
   {
-    text: "The CCTV access gives us such peace of mind. It's truly a safe and wonderful environment.",
-    author: "Anjali Gupta",
-    role: "Parent of Playgroup Student"
+    text: "Best school in Siddipet New beginning for children is very good from here, my daughter get a lot of improvement from here.",
+    author: "Amier Shiak",
+    role: "Parent"
   }
 ];
 

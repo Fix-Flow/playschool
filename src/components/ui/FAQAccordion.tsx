@@ -23,7 +23,7 @@ const FAQ_ITEMS: FAQItem[] = [
   {
     emoji: '📝',
     question: 'How do I enroll my child?',
-    answer: 'Enrollment is simple! You can reach out to us via WhatsApp, phone, or visit our campus. We\'ll give you a tour, discuss your child\'s needs, and guide you through a quick registration form. That\'s it!',
+    answer: 'Enrollment is simple! You can reach out to us via phone or visit our campus. We\'ll give you a tour, discuss your child\'s needs, and guide you through a quick registration form. That\'s it!',
   },
   {
     emoji: '🍱',

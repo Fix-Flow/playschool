@@ -45,6 +45,7 @@ html {
 
 html, body {
   max-width: 100vw;
+  overflow-x: hidden;
 }
 
 body {
@@ -496,3 +497,48 @@ p {
 }
 
 
+
+/* ======================= WHATSAPP FLOATING BUTTON ======================= */
+
+.wa-btn {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 9999;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: #25D366;
+  box-shadow: 0 8px 32px rgba(37, 211, 102, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  cursor: pointer;
+  opacity: 0;
+  transform: scale(0.5);
+  transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
+}
+
+.wa-btn.wa-visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.wa-btn:hover {
+  transform: scale(1.12) rotate(-6deg) !important;
+  box-shadow: 0 12px 40px rgba(37, 211, 102, 0.6) !important;
+}
+
+.wa-btn:active {
+  transform: scale(0.96) !important;
+}
+
+@media (max-width: 760px) {
+  .wa-btn {
+    bottom: 16px;
+    right: 16px;
+    width: 52px;
+    height: 52px;
+  }
+}
