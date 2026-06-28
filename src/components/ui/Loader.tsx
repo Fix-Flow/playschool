@@ -84,13 +84,11 @@ export default function Loader() {
             }} 
           />
           
-          {/* The Boy Video (Walking left side) */}
-          <video 
-            src="/Boy going to school.webm" 
-            autoPlay 
-            muted={true} 
-            loop 
-            playsInline 
+          
+          {/* The Boy (Walking left side) */}
+          <img 
+            src="/boy_walking.webp" 
+            alt="Boy walking to school"
             style={{ 
               position: "absolute",
               bottom: "30px", /* Sits him perfectly on the left slope of the grass */
@@ -101,13 +99,10 @@ export default function Loader() {
             }}
           />
           
-          {/* The Kid Cycling Video (Riding right side) */}
-          <video 
-            src="/kid_cycling.webm" 
-            autoPlay 
-            muted={true} 
-            loop 
-            playsInline 
+          {/* The Kid Cycling (Riding right side) */}
+          <img 
+            src="/kid_cycling.webp" 
+            alt="Kid cycling"
             style={{ 
               position: "absolute",
               bottom: "30px", /* Grounds his bike wheels on the grass */
